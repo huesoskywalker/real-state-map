@@ -35,7 +35,7 @@ function MapComponent({ properties }: { properties: Property[] }): React.JSX.Ele
     )
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey: "YOUR-GOOGLE-MAP-API-KEY",
+        googleMapsApiKey: "YOUR-GOOGLE-MAP-API-KEY" || process.env.GOOGLE_MAPS_API_KEY,
     })
 
     const [map, setMap] = React.useState(null)

@@ -1,40 +1,132 @@
-# Enunciado del problema: Sistema de visualización de proyectos inmobiliarios
+# Real Estate Projects Visualization with Google Map API
 
-[Contexto] Un cliente desea desarrollar un sistema de visualización de proyectos inmobiliarios en un mapa interactivo. El objetivo del sistema es permitir a los usuarios explorar proyectos inmobiliarios en diferentes ubicaciones y obtener información detallada sobre ellos.
+## Table of Contents
 
-El sistema debe cumplir con los siguientes requisitos:
+-   [Description](#description)
+-   [Features](#features)
+-   [Technologies](#technologies)
+-   [Getting Started](#getting-started)
+    -   [Prerequisites](#prerequisites)
+    -   [Installation](#installation)
+    -   [Running the MongoDB Database](#running-the-mongodb-database)
+    -   [Inserting Data into the Database](#inserting-data-into-the-database)
+    -   [Running the API](#running-the-api)
+-   [Testing](#testing)
+-   [Contributing](#contributing)
 
--   Visualización del mapa: El sistema debe mostrar un mapa interactivo donde se puedan ubicar los proyectos inmobiliarios. Se pueden utilizar bibliotecas o servicios como Google Maps, Mapbox u otros.
--   Marcadores de proyectos: Cada proyecto inmobiliario debe representarse en el mapa mediante un marcador. El marcador debe mostrar una vista previa del proyecto, como una imagen o un icono representativo.
+## Description
 
--   Información detallada: Al hacer clic en un marcador, se debe mostrar una ventana emergente o una sección de detalles que contenga información adicional sobre el proyecto, como el nombre, la ubicación, una descripción y detalles relevantes.
--   Búsqueda y filtrado: El sistema debe permitir a los usuarios buscar proyectos inmobiliarios por ubicación o por otros criterios relevantes, como el tipo de propiedad, el precio, la superficie, etc. Además, los usuarios deben poder filtrar los proyectos por categorías.
--   Interacción y navegación: Los usuarios deben poder interactuar con el mapa para desplazarse, hacer zoom y explorar los proyectos inmobiliarios en diferentes áreas geográficas.
+Propital is a RESTful API that allows clients to explore real estate projects on an interactive map. It provides detailed information about each project, including its name, location, description, and relevant details.
 
--   Persistencia de datos: El sistema debe obtener los datos de los proyectos inmobiliarios a través de una API o una base de datos. Asegúrate de tener un conjunto de datos de prueba disponible para utilizar en la prueba.
+## Features
 
-Nota 1: Estamos interesados en tu capacidad para comprender y resolver problemas de programación, así como tu habilidad en el desarrollo de APIs y la gestión de bases de datos. Tu tarea es crear una API basada en el siguiente escenario:
+-   Visualize real estate projects on an interactive map.
+-   Get detailed information about each project by clicking on a marker.
+-   Search and filter projects by location, property type, price, and more.
+-   Interact with the map for navigation and exploration.
+-   Data persistence through a MongoDB database.
 
-# Tus tareas son las siguientes:
+## Technologies
 
--   Diseña y desarrolla una API RESTful que permita a los clientes realizar las acciones mencionadas anteriormente.
-
--   Implementa una base de datos para almacenar la información de las propiedades y las ofertas. La base de datos debe reflejar el estado actual de cada propiedad y cada oferta.
--   Escribe pruebas unitarias para tu API.
--   Asegúrate de que tu código esté bien documentado y la documentación sea clara.
-
--   Proporciona una descripción detallada de tu diseño, incluyendo diagramas (ADR suma puntos) o bocetos si es necesario. También puedes mencionar las tecnologías específicas que utilizarías para implementar el sistema. (Suma puntos el uso de Python/PHP/Typescript)
+-   Next.js for building the API.
+-   MongoDB for the database.
+-   Google Maps API for the interactive map.
+-   Cypress for unit testing.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+-   Node.js and npm installed on your machine.
+-   MongoDB installed and running locally or a connection to a MongoDB cloud service.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
+
+1. Clone this repository to your local machine:
+
+    ```
+    git clone https://github.com/your-username/your-repo-name.git
+    ```
+
+2. Navigate to the project folder:
+
+    ```
+    cd your-repo-name
+    ```
+
+3. Install the dependencies:
+    ```
+    yarn install
+    ```
+
+### Running the MongoDB Database
+
+1. Start the MongoDB service on your machine. In Linux, you can use the following commands:
+
+    ```
+    sudo systemctl start mongod
+    ```
+
+2. Connect to the MongoDB shell:
+    ```
+    mongosh
+    ```
+
+### Inserting Data into the Database
+
+1. Create a new database named `propitalDb` in the MongoDB shell:
+
+    ```
+    use propitalDb
+    ```
+
+2. Create a collection named `properties`:
+
+    ```
+    db.createCollection('properties')
+    ```
+
+3. In the project's `public/data` directory, you will find a `properties.json` file with random data for properties. Copy the data from the `properties.json` file.
+
+4. Insert the data into the `properties` collection in the MongoDB shell:
+    ```
+    db.properties.insertMany(// paste the data here)
+    ```
+
+### Running the API
+
+1. Create a `.env.local` file in the root of the project and add the necessary environment variables:
+
+    ```
+    MONGODB_URI=<your-mongodb-uri>
+    GOOGLE_MAPS_API_KEY=<your-google-maps-api-key>
+    ```
+
+    When using the Google maps API key on the .env.local file, I got water marks with Developer only, So placing the API key in the MapComponent directly will work great
+
+2. Start the APP:
+
+    ```
+    yarn dev
+    ```
+
+3. The APP will now be running at `http://localhost:3000`.
+
+For testing the REST API endpoint, you can run the following commands:
+
+-   To use the Cypress GUI:
+
+    ```
+    yarn cypress:open
+    ```
+
+-   To run the tests through the terminal:
+    ```
+    yarn cypress:run
+    ```
+
+## Contributing
+
+We welcome contributions from the community. If you find a bug or have an enhancement in mind, please open an issue or submit a pull request.
+
+---
