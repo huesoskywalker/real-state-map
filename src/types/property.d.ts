@@ -3,18 +3,18 @@ import { LatLngLiteral } from "./google-maps-api"
 
 export interface Property {
     readonly _id: ObjectId | string
-    nombre: string
-    ubicacion: LatLngLiteral
-    descripcion: string
-    precio: number
-    superficie: number
-    categoria: string
+    name: string
+    location: LatLngLiteral
+    description: string
+    price: number
+    surfaceArea: number
+    category: string
 }
 
 export interface Office {
-    nombre: string
-    direccion: string
-    telefono: number
+    name: string
+    direction: string
+    telephone: number
 }
 
 export type Category = {
@@ -22,7 +22,7 @@ export type Category = {
 }
 
 export type Filter = {
-    categoria?: string
-    superficie?: {}
-    precio?: {}
+    category?: string
+    surfaceArea?: {}
+    price?: {}
 }

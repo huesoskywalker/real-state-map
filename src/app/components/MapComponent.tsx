@@ -35,7 +35,7 @@ function MapComponent({ properties }: { properties: Property[] }): React.JSX.Ele
     )
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey: "YOUR-GOOGLE-MAP-API-KEY" || process.env.GOOGLE_MAPS_API_KEY,
+        googleMapsApiKey: "YOUR-API-KEY-WORK-GREAT-HERE" || process.env.GOOGLE_MAPS_API_KEY,
     })
 
     const [map, setMap] = React.useState(null)
@@ -86,14 +86,14 @@ function MapComponent({ properties }: { properties: Property[] }): React.JSX.Ele
                     }}
                 >
                     <div className="max-w-xs p-4">
-                        <h2 className="text-xl font-semibold text-gray-800">{office.nombre}</h2>
+                        <h2 className="text-xl font-semibold text-gray-800">{office.name}</h2>
                         <div className="mt-4">
-                            <span className="text-sm font-semibold text-gray-700">Direccion:</span>
-                            <span className="text-sm text-gray-700 ml-2">{office.direccion}</span>
+                            <span className="text-sm font-semibold text-gray-700">Direction:</span>
+                            <span className="text-sm text-gray-700 ml-2">{office.direction}</span>
                         </div>
                         <div className="mt-2">
-                            <span className="text-sm font-semibold text-gray-700">Telefono:</span>
-                            <span className="text-sm text-gray-700 ml-2">{office.telefono}</span>
+                            <span className="text-sm font-semibold text-gray-700">Telephone:</span>
+                            <span className="text-sm text-gray-700 ml-2">{office.telephone}</span>
                         </div>
                     </div>
                 </InfoWindowF>
@@ -102,14 +102,14 @@ function MapComponent({ properties }: { properties: Property[] }): React.JSX.Ele
                 {(clusterer) => (
                     <>
                         {properties?.map((property: Property) => {
-                            const iconUrl: string | undefined = useMarkerByType(property.categoria)
+                            const iconUrl: string | undefined = useMarkerByType(property.category)
                             const icon: { url: string } | undefined = iconUrl
                                 ? { url: iconUrl }
                                 : undefined
                             return (
                                 <MarkerF
-                                    key={property.ubicacion.lat}
-                                    position={property.ubicacion}
+                                    key={property.location.lat}
+                                    position={property.location}
                                     icon={icon}
                                     clusterer={clusterer}
                                     onClick={() => setSelectedProperty(property)}
@@ -121,26 +121,26 @@ function MapComponent({ properties }: { properties: Property[] }): React.JSX.Ele
             </MarkerClustererF>
             {selectedProperty && (
                 <InfoWindowF
-                    position={selectedProperty.ubicacion}
+                    position={selectedProperty.location}
                     onCloseClick={() => setSelectedProperty(null)}
                 >
                     <div className="max-w-xs p-4">
                         <h2 className="text-xl font-semibold text-gray-800">
-                            {selectedProperty.nombre}
+                            {selectedProperty.name}
                         </h2>
-                        <p className="text-gray-600 mt-2">{selectedProperty.descripcion}</p>
+                        <p className="text-gray-600 mt-2">{selectedProperty.description}</p>
                         <div className="mt-4">
-                            <span className="text-sm font-semibold text-gray-700">Precio:</span>
+                            <span className="text-sm font-semibold text-gray-700">Price:</span>
                             <span className="text-sm text-gray-700 ml-2">
-                                ${selectedProperty.precio}
+                                ${selectedProperty.price}
                             </span>
                         </div>
                         <div className="mt-2">
                             <span className="text-sm font-semibold text-gray-700">
-                                Superficie:
+                                SurfaceArea:
                             </span>
                             <span className="text-sm text-gray-700 ml-2">
-                                {selectedProperty.superficie} m²
+                                {selectedProperty.surfaceArea} m²
                             </span>
                         </div>
                     </div>

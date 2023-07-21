@@ -44,7 +44,7 @@ const FilterNav = () => {
     }
     const handleCategory = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
         const categoryParam: URLSearchParams = createQueryString(
-            "categoria",
+            "category",
             event.currentTarget.value
         )
         router.push(pathname + "?" + categoryParam)
@@ -69,7 +69,7 @@ const FilterNav = () => {
         setSelectedMaxPrice(updatedMaxPrice)
 
         const surfaceAreaParam: URLSearchParams = createQueryString(
-            "precio",
+            "price",
             `${updatedMinPrice}&${updatedMaxPrice}`
         )
         router.push(pathname + "?" + surfaceAreaParam)
@@ -106,7 +106,7 @@ const FilterNav = () => {
         setSelectedMaxSurfaceArea(updatedMaxSurfaceArea)
 
         const surfaceAreaParam: URLSearchParams = createQueryString(
-            "superficie",
+            "surfaceArea",
             `${updatedMinSurfaceArea}&${updatedMaxSurfaceArea}`
         )
         router.push(pathname + "?" + surfaceAreaParam)
@@ -127,7 +127,7 @@ const FilterNav = () => {
     }
 
     const FilterNavItems = ({ item }: { item: Category }): React.JSX.Element => {
-        const categoryName: string | null = searchParams.get("categoria")
+        const categoryName: string | null = searchParams.get("category")
         const isActive: boolean = item.name === categoryName
         return (
             <button
@@ -175,14 +175,14 @@ const FilterNav = () => {
                             </svg>
                         </span>
                     </button>
-                    <label className="text-gray-200 text-xs">Categoria</label>
+                    <label className="text-gray-200 text-xs">Category</label>
                     <div className="p-4 space-y-4 flex flex-col items-center justify-center border rounded-lg border-gray-700">
                         {category.map((item) => {
                             return <FilterNavItems key={item.name} item={item} />
                         })}
                     </div>
                     <div ref={priceRange} className="w-full px-2 relative">
-                        <label className="text-gray-400 text-xs font-medium">Precio</label>
+                        <label className="text-gray-400 text-xs font-medium">Price</label>
                         <Slider
                             range
                             min={0}
@@ -224,12 +224,12 @@ const FilterNav = () => {
                                 onChange={(event) => {
                                     handlePrice(parseInt(event.target.value), event.target.id)
                                 }}
-                                className="w-[66px] h-5 p-2 text-xs bg-gray-800 text-gray-300 rounded-md"
+                                className="w-[75px] h-5 p-2 text-xs bg-gray-800 text-gray-300 rounded-md"
                             />
                         </div>
                     </div>
                     <div ref={surfaceAreaRange} className="w-full px-2 relative">
-                        <label className="text-gray-400 text-xs font-medium">Superficie</label>
+                        <label className="text-gray-400 text-xs font-medium">SurfaceArea</label>
                         <Slider
                             range
                             min={0}

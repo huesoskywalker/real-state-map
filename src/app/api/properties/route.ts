@@ -5,24 +5,24 @@ import { NextResponse } from "next/server"
 
 export async function POST(request: Request) {
     const req = await request.json()
-    const { categoria, superficie, precio } = req.searchParams
+    const { category, surfaceArea, price } = req.searchParams
 
     const filter: Filter = {}
 
-    if (categoria) {
-        filter.categoria = categoria
+    if (category) {
+        filter.category = category
     }
-    if (superficie) {
-        const splitSuperficie = superficie.split("&")
-        const superficieMin = splitSuperficie[0]
-        const superficieMax = splitSuperficie[1]
-        filter.superficie = { $lte: parseInt(superficieMax), $gte: parseInt(superficieMin) }
+    if (surfaceArea) {
+        const splitsurfaceArea = surfaceArea.split("&")
+        const surfaceAreaMin = splitsurfaceArea[0]
+        const surfaceAreaMax = splitsurfaceArea[1]
+        filter.surfaceArea = { $lte: parseInt(surfaceAreaMax), $gte: parseInt(surfaceAreaMin) }
     }
-    if (precio) {
-        const splitPrecio = precio.split("&")
-        const precioMin = splitPrecio[0]
-        const precioMax = splitPrecio[1]
-        filter.precio = { $lte: parseInt(precioMax), $gte: parseInt(precioMin) }
+    if (price) {
+        const splitprice = price.split("&")
+        const priceMin = splitprice[0]
+        const priceMax = splitprice[1]
+        filter.price = { $lte: parseInt(priceMax), $gte: parseInt(priceMin) }
     }
     try {
         const client: MongoClient = await clientPromise

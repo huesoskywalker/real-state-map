@@ -1,242 +1,242 @@
 [
     {
-        "nombre": "Propiedad 1",
-        "ubicacion": { "lat": -33.426, "lng": -70.691 },
-        "descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "precio": 50000,
-        "superficie": 1400,
-        "categoria": "Departamento Nuevo"
+        "name": "Propiedad 1",
+        "location": { "lat": -33.426, "lng": -70.691 },
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "price": 50000,
+        "surfaceArea": 1400,
+        "category": "Departamento Nuevo"
     },
     {
-        "nombre": "Propiedad 2",
-        "ubicacion": { "lat": -33.439, "lng": -70.661 },
-        "descripcion": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "precio": 75000,
-        "superficie": 2000,
-        "categoria": "Parcela"
+        "name": "Propiedad 2",
+        "location": { "lat": -33.439, "lng": -70.661 },
+        "description": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "price": 75000,
+        "surfaceArea": 2000,
+        "category": "Parcela"
     },
     {
-        "nombre": "Propiedad 3",
-        "ubicacion": { "lat": -33.542, "lng": -70.672 },
-        "descripcion": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "precio": 35000,
-        "superficie": 1200,
-        "categoria": "Departamento Nuevo"
+        "name": "Propiedad 3",
+        "location": { "lat": -33.542, "lng": -70.672 },
+        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "price": 35000,
+        "surfaceArea": 1200,
+        "category": "Departamento Nuevo"
     },
     {
-        "nombre": "Propiedad 4",
-        "ubicacion": { "lat": -33.425, "lng": -70.653 },
-        "descripcion": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-        "precio": 90000,
-        "superficie": 1800,
-        "categoria": "Parcela"
+        "name": "Propiedad 4",
+        "location": { "lat": -33.425, "lng": -70.653 },
+        "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "price": 90000,
+        "surfaceArea": 1800,
+        "category": "Parcela"
     },
     {
-        "nombre": "Propiedad 5",
-        "ubicacion": { "lat": -33.618, "lng": -70.694 },
-        "descripcion": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "precio": 60000,
-        "superficie": 1600,
-        "categoria": "Departamento Nuevo"
+        "name": "Propiedad 5",
+        "location": { "lat": -33.618, "lng": -70.694 },
+        "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "price": 60000,
+        "surfaceArea": 1600,
+        "category": "Departamento Nuevo"
     },
     {
-        "nombre": "Propiedad 6",
-        "ubicacion": { "lat": -33.451, "lng": -70.705 },
-        "descripcion": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.",
-        "precio": 120000,
-        "superficie": 2500,
-        "categoria": "Parcela"
+        "name": "Propiedad 6",
+        "location": { "lat": -33.451, "lng": -70.705 },
+        "description": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.",
+        "price": 120000,
+        "surfaceArea": 2500,
+        "category": "Parcela"
     },
     {
-        "nombre": "Propiedad 7",
-        "ubicacion": { "lat": -33.454, "lng": -70.616 },
-        "descripcion": "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
-        "precio": 40000,
-        "superficie": 1300,
-        "categoria": "Departamento Nuevo"
+        "name": "Propiedad 7",
+        "location": { "lat": -33.454, "lng": -70.616 },
+        "description": "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
+        "price": 40000,
+        "surfaceArea": 1300,
+        "category": "Departamento Nuevo"
     },
     {
-        "nombre": "Propiedad 8",
-        "ubicacion": { "lat": -33.357, "lng": -70.727 },
-        "descripcion": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
-        "precio": 80000,
-        "superficie": 1900,
-        "categoria": "Departamento Nuevo"
+        "name": "Propiedad 8",
+        "location": { "lat": -33.357, "lng": -70.727 },
+        "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+        "price": 80000,
+        "surfaceArea": 1900,
+        "category": "Departamento Nuevo"
     },
     {
-        "nombre": "Propiedad 9",
-        "ubicacion": { "lat": -33.26, "lng": -70.838 },
-        "descripcion": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque.",
-        "precio": 55000,
-        "superficie": 1700,
-        "categoria": "Departamento Nuevo"
+        "name": "Propiedad 9",
+        "location": { "lat": -33.26, "lng": -70.838 },
+        "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque.",
+        "price": 55000,
+        "surfaceArea": 1700,
+        "category": "Departamento Nuevo"
     },
     {
-        "nombre": "Propiedad 10",
-        "ubicacion": { "lat": -33.163, "lng": -70.8 },
-        "descripcion": "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
-        "precio": 95000,
-        "superficie": 2200,
-        "categoria": "Parcela"
+        "name": "Propiedad 10",
+        "location": { "lat": -33.163, "lng": -70.8 },
+        "description": "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
+        "price": 95000,
+        "surfaceArea": 2200,
+        "category": "Parcela"
     },
     {
-        "nombre": "Propiedad 11",
-        "ubicacion": { "lat": -33.41, "lng": -70.75 },
-        "descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "precio": 47000,
-        "superficie": 1400,
-        "categoria": "Departamento Nuevo"
+        "name": "Propiedad 11",
+        "location": { "lat": -33.41, "lng": -70.75 },
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "price": 47000,
+        "surfaceArea": 1400,
+        "category": "Departamento Nuevo"
     },
     {
-        "nombre": "Propiedad 12",
-        "ubicacion": { "lat": -33.469, "lng": -70.771 },
-        "descripcion": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "precio": 78000,
-        "superficie": 2100,
-        "categoria": "Parcela"
+        "name": "Propiedad 12",
+        "location": { "lat": -33.469, "lng": -70.771 },
+        "description": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "price": 78000,
+        "surfaceArea": 2100,
+        "category": "Parcela"
     },
     {
-        "nombre": "Propiedad 13",
-        "ubicacion": { "lat": -33.422, "lng": -70.682 },
-        "descripcion": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "precio": 41000,
-        "superficie": 1250,
-        "categoria": "Departamento Seminuevo"
+        "name": "Propiedad 13",
+        "location": { "lat": -33.422, "lng": -70.682 },
+        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "price": 41000,
+        "surfaceArea": 1250,
+        "category": "Departamento Seminuevo"
     },
     {
-        "nombre": "Propiedad 14",
-        "ubicacion": { "lat": -33.175, "lng": -70.793 },
-        "descripcion": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-        "precio": 87000,
-        "superficie": 1950,
-        "categoria": "Departamento Seminuevo"
+        "name": "Propiedad 14",
+        "location": { "lat": -33.175, "lng": -70.793 },
+        "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "price": 87000,
+        "surfaceArea": 1950,
+        "category": "Departamento Seminuevo"
     },
     {
-        "nombre": "Propiedad 15",
-        "ubicacion": { "lat": -33.278, "lng": -70.804 },
-        "descripcion": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "precio": 62000,
-        "superficie": 1650,
-        "categoria": "Departamento Seminuevo"
+        "name": "Propiedad 15",
+        "location": { "lat": -33.278, "lng": -70.804 },
+        "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "price": 62000,
+        "surfaceArea": 1650,
+        "category": "Departamento Seminuevo"
     },
     {
-        "nombre": "Propiedad 16",
-        "ubicacion": { "lat": -33.381, "lng": -70.715 },
-        "descripcion": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.",
-        "precio": 110000,
-        "superficie": 2400,
-        "categoria": "Departamento Seminuevo"
+        "name": "Propiedad 16",
+        "location": { "lat": -33.381, "lng": -70.715 },
+        "description": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.",
+        "price": 110000,
+        "surfaceArea": 2400,
+        "category": "Departamento Seminuevo"
     },
     {
-        "nombre": "Propiedad 17",
-        "ubicacion": { "lat": -33.424, "lng": -70.726 },
-        "descripcion": "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
-        "precio": 38000,
-        "superficie": 1350,
-        "categoria": "Departamento Seminuevo"
+        "name": "Propiedad 17",
+        "location": { "lat": -33.424, "lng": -70.726 },
+        "description": "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
+        "price": 38000,
+        "surfaceArea": 1350,
+        "category": "Departamento Seminuevo"
     },
     {
-        "nombre": "Propiedad 18",
-        "ubicacion": { "lat": -33.457, "lng": -70.807 },
-        "descripcion": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
-        "precio": 72000,
-        "superficie": 2050,
-        "categoria": "Departamento Nuevo"
+        "name": "Propiedad 18",
+        "location": { "lat": -33.457, "lng": -70.807 },
+        "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+        "price": 72000,
+        "surfaceArea": 2050,
+        "category": "Departamento Nuevo"
     },
     {
-        "nombre": "Propiedad 19",
-        "ubicacion": { "lat": -33.49, "lng": -70.848 },
-        "descripcion": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.",
-        "precio": 50000,
-        "superficie": 1500,
-        "categoria": "Departamento Seminuevo"
+        "name": "Propiedad 19",
+        "location": { "lat": -33.49, "lng": -70.848 },
+        "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.",
+        "price": 50000,
+        "surfaceArea": 1500,
+        "category": "Departamento Seminuevo"
     },
     {
-        "nombre": "Propiedad 20",
-        "ubicacion": { "lat": -33.593, "lng": -70.889 },
-        "descripcion": "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
-        "precio": 85000,
-        "superficie": 2000,
-        "categoria": "Parcela"
+        "name": "Propiedad 20",
+        "location": { "lat": -33.593, "lng": -70.889 },
+        "description": "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
+        "price": 85000,
+        "surfaceArea": 2000,
+        "category": "Parcela"
     },
     {
-        "nombre": "Propiedad 21",
-        "ubicacion": { "lat": -33.493, "lng": -70.869 },
-        "descripcion": "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
-        "precio": 85000,
-        "superficie": 2000,
-        "categoria": "Departamento Seminuevo"
+        "name": "Propiedad 21",
+        "location": { "lat": -33.493, "lng": -70.869 },
+        "description": "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
+        "price": 85000,
+        "surfaceArea": 2000,
+        "category": "Departamento Seminuevo"
     },
     {
-        "nombre": "Propiedad 22",
-        "ubicacion": { "lat": -33.59, "lng": -70.748 },
-        "descripcion": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum.",
-        "precio": 50000,
-        "superficie": 1500,
-        "categoria": "Departamento Seminuevo"
+        "name": "Propiedad 22",
+        "location": { "lat": -33.59, "lng": -70.748 },
+        "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum.",
+        "price": 50000,
+        "surfaceArea": 1500,
+        "category": "Departamento Seminuevo"
     },
     {
-        "nombre": "Propiedad 23",
-        "ubicacion": { "lat": -33.261, "lng": -70.755 },
-        "descripcion": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.",
-        "precio": 110000,
-        "superficie": 2400,
-        "categoria": "Departamento Nuevo"
+        "name": "Propiedad 23",
+        "location": { "lat": -33.261, "lng": -70.755 },
+        "description": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.",
+        "price": 110000,
+        "surfaceArea": 2400,
+        "category": "Departamento Nuevo"
     },
     {
-        "nombre": "Propiedad 24",
-        "ubicacion": { "lat": -33.252, "lng": -70.824 },
-        "descripcion": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "precio": 62000,
-        "superficie": 1650,
-        "categoria": "Departamento Seminuevo"
+        "name": "Propiedad 24",
+        "location": { "lat": -33.252, "lng": -70.824 },
+        "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "price": 62000,
+        "surfaceArea": 1650,
+        "category": "Departamento Seminuevo"
     },
     {
-        "nombre": "Propiedad 25",
-        "ubicacion": { "lat": -33.237, "lng": -70.747 },
-        "descripcion": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
-        "precio": 80000,
-        "superficie": 1900,
-        "categoria": "Parcela"
+        "name": "Propiedad 25",
+        "location": { "lat": -33.237, "lng": -70.747 },
+        "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+        "price": 80000,
+        "surfaceArea": 1900,
+        "category": "Parcela"
     },
     {
-        "nombre": "Propiedad 26",
-        "ubicacion": { "lat": -33.326, "lng": -70.621 },
-        "descripcion": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "precio": 55000,
-        "superficie": 900,
-        "categoria": "Parcela"
+        "name": "Propiedad 26",
+        "location": { "lat": -33.326, "lng": -70.621 },
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "price": 55000,
+        "surfaceArea": 900,
+        "category": "Parcela"
     },
     {
-        "nombre": "Propiedad 27",
-        "ubicacion": { "lat": -33.497, "lng": -70.607 },
-        "descripcion": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
-        "precio": 72000,
-        "superficie": 875,
-        "categoria": "Departamento Nuevo"
+        "name": "Propiedad 27",
+        "location": { "lat": -33.497, "lng": -70.607 },
+        "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+        "price": 72000,
+        "surfaceArea": 875,
+        "category": "Departamento Nuevo"
     },
     {
-        "nombre": "Propiedad 28",
-        "ubicacion": { "lat": -33.413, "lng": -70.699 },
-        "descripcion": "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
-        "precio": 81500,
-        "superficie": 1750,
-        "categoria": "Departamento Seminuevo"
+        "name": "Propiedad 28",
+        "location": { "lat": -33.413, "lng": -70.699 },
+        "description": "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
+        "price": 81500,
+        "surfaceArea": 1750,
+        "category": "Departamento Seminuevo"
     },
     {
-        "nombre": "Propiedad 29",
-        "ubicacion": { "lat": -33.122, "lng": -70.182 },
-        "descripcion": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "precio": 51500,
-        "superficie": 1200,
-        "categoria": "Departamento Seminuevo"
+        "name": "Propiedad 29",
+        "location": { "lat": -33.122, "lng": -70.182 },
+        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "price": 51500,
+        "surfaceArea": 1200,
+        "category": "Departamento Seminuevo"
     },
     {
-        "nombre": "Propiedad 30",
-        "ubicacion": { "lat": -33.268, "lng": -70.289 },
-        "descripcion": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque.",
-        "precio": 89000,
-        "superficie": 1470,
-        "categoria": "Departamento Nuevo"
+        "name": "Propiedad 30",
+        "location": { "lat": -33.268, "lng": -70.289 },
+        "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque.",
+        "price": 89000,
+        "surfaceArea": 1470,
+        "category": "Departamento Nuevo"
     }
 ]
