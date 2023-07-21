@@ -40,7 +40,8 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
         const categoria: string = "Parcela"
         const precioMinimo: number = 100
         const precioMaximo: number = 500
-        const superficie: number = 200
+        const superficieMinima: number = 100
+        const superficieMaxima: number = 200
         cy.api({
             url: "/api/properties",
             method: "POST",
@@ -49,7 +50,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
                 searchParams: {
                     categoria: categoria,
                     precio: precioMinimo + "&" + precioMaximo,
-                    superficie: superficie,
+                    superficie: superficieMinima + "&" + superficieMaxima,
                 },
             }),
         }).then((response) => {
@@ -102,7 +103,8 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
         const categoria: string = "Departamento Nuevo"
         const precioMinimo: number = 60000
         const precioMaximo: number = 900000
-        const superficie: number = 1800
+        const superficieMinima: number = 1000
+        const superficieMaxima: number = 2400
         cy.api({
             url: "/api/properties",
             method: "POST",
@@ -111,7 +113,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
                 searchParams: {
                     categoria: categoria,
                     precio: precioMinimo + "&" + precioMaximo,
-                    superficie: superficie,
+                    superficie: superficieMinima + "&" + superficieMaxima,
                 },
             }),
         }).then((response) => {
@@ -135,7 +137,10 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
                     .to.be.a("number")
                     .and.to.be.at.least(precioMinimo)
                     .and.to.be.at.most(precioMaximo)
-                expect(property.superficie).to.be.a("number").and.to.be.at.most(superficie)
+                expect(property.superficie)
+                    .to.be.a("number")
+                    .and.to.be.at.least(superficieMinima)
+                    .and.to.be.at.most(superficieMaxima)
                 expect(property.ubicacion).to.be.a("object").and.to.have.keys("lat", "lng")
             })
         })

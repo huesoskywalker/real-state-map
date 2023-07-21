@@ -7,7 +7,7 @@ import FilterNav from "./components/FilterNav"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-    title: "Propital",
+    title: "HS",
     description: "Technical Test",
 }
 

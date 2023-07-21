@@ -1,5 +1,5 @@
 "use client"
-import React, { useCallback, useRef, useState } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import { ReadonlyURLSearchParams, usePathname, useRouter, useSearchParams } from "next/navigation"
 import clsx from "clsx"
 import Slider from "rc-slider"
@@ -9,12 +9,16 @@ import { category } from "../utils/data"
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context"
 
 const FilterNav = () => {
-    const [selectedSurfaceArea, setSelectedSurfaceArea] = useState<number>(2500)
+    const [selectedMinSurfaceArea, setSelectedMinSurfaceArea] = useState<number>(0)
+    const [selectedMaxSurfaceArea, setSelectedMaxSurfaceArea] = useState<number>(2500)
     const [selectedMinPrice, setSelectedMinPrice] = useState<number>(0)
     const [selectedMaxPrice, setSelectedMaxPrice] = useState<number>(120000)
 
-    const surfaceAreaRange = useRef<HTMLInputElement | null>(null)
-    const surfaceAreaSpan = useRef<HTMLSpanElement | null>(null)
+    const surfaceAreaRange = useRef<HTMLDivElement | null>(null)
+    const surfaceAreaMinSpan = useRef<HTMLSpanElement | null>(null)
+    const surfaceAreaMaxSpan = useRef<HTMLSpanElement | null>(null)
+
+    const priceRange = useRef<HTMLDivElement | null>(null)
     const priceMinSpan = useRef<HTMLSpanElement | null>(null)
     const priceMaxSpan = useRef<HTMLSpanElement | null>(null)
 
@@ -31,13 +35,11 @@ const FilterNav = () => {
         [searchParams]
     )
     const handleClearFilters = (): void => {
-        setSelectedSurfaceArea(2500)
+        setSelectedMinSurfaceArea(0)
+        setSelectedMaxSurfaceArea(2500)
         setSelectedMinPrice(0)
         setSelectedMaxPrice(120000)
-        if (surfaceAreaSpan.current && surfaceAreaRange.current) {
-            const containerWidth: number = surfaceAreaRange.current.offsetWidth
-            surfaceAreaSpan.current.style.left = `${containerWidth}px`
-        }
+
         router.push(pathname)
     }
     const handleCategory = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
@@ -48,50 +50,79 @@ const FilterNav = () => {
         router.push(pathname + "?" + categoryParam)
     }
 
-    const handlePrice = (value: number | number[]): void => {
-        if (typeof value === "number") return
-        setSelectedMinPrice(value[0])
-        setSelectedMaxPrice(value[1])
+    const handlePrice = (value: number | number[], id?: string): void => {
+        const updatedMinPrice =
+            typeof value === "number" && id === "min"
+                ? value
+                : Array.isArray(value)
+                ? value[0]
+                : selectedMinPrice
+
+        const updatedMaxPrice =
+            typeof value === "number" && id === "max"
+                ? value
+                : Array.isArray(value)
+                ? value[1]
+                : selectedMaxPrice
+
+        setSelectedMinPrice(updatedMinPrice)
+        setSelectedMaxPrice(updatedMaxPrice)
+
         const surfaceAreaParam: URLSearchParams = createQueryString(
             "precio",
-            `${selectedMinPrice}&${selectedMaxPrice}`
+            `${updatedMinPrice}&${updatedMaxPrice}`
         )
         router.push(pathname + "?" + surfaceAreaParam)
-        updatePricePosition()
-    }
-
-    const handleSurfaceArea = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        const selectedSurfaceValue: number = parseInt(event.target.value)
-        setSelectedSurfaceArea(selectedSurfaceValue)
-        const surfaceAreaParam: URLSearchParams = createQueryString(
-            "superficie",
-            event.target.value
-        )
-        router.push(pathname + "?" + surfaceAreaParam)
-        updateSurfaceAreaPosition()
-    }
-
-    const updateSurfaceAreaPosition = (): void => {
-        if (surfaceAreaRange.current && surfaceAreaSpan.current) {
-            const range: HTMLInputElement = surfaceAreaRange.current
-            const span: HTMLSpanElement = surfaceAreaSpan.current
-            const min: number = parseInt(range.min)
-            const max: number = parseInt(range.max)
-            const width: number = range.offsetWidth
-            const leftOffset: number = ((selectedSurfaceArea - min) / (max - min)) * width
-            span.style.left = `${leftOffset}px`
-        }
     }
 
     const updatePricePosition = (): void => {
-        if (priceMinSpan.current && priceMaxSpan.current) {
-            const slider: Element | null = document.querySelector(".rc-slider")
-            const sliderRect: DOMRect | undefined = slider?.getBoundingClientRect()
-            const left: number = ((selectedMinPrice - 0) / (120000 - 0)) * sliderRect!.width
-            const right: number = ((selectedMaxPrice - 0) / (120000 - 0)) * sliderRect!.width
+        if (priceMinSpan.current && priceMaxSpan.current && priceRange.current) {
+            const range = priceRange.current
+            const min = parseInt(range.getAttribute("min") || "0")
+            const max = parseInt(range.getAttribute("max") || "120000")
+            const width = range.offsetWidth
+            const left = ((selectedMinPrice - min) / (max - min)) * width
+            const right = ((selectedMaxPrice - min) / (max + 20000 - min)) * width
 
             priceMinSpan.current.style.left = `${left}px`
             priceMaxSpan.current.style.left = `${right}px`
+        }
+    }
+    const handleSurfaceArea = (value: number | number[], id?: string): void => {
+        const updatedMinSurfaceArea =
+            typeof value === "number" && id === "min"
+                ? value
+                : Array.isArray(value)
+                ? value[0]
+                : selectedMinSurfaceArea
+        const updatedMaxSurfaceArea =
+            typeof value === "number" && id === "max"
+                ? value
+                : Array.isArray(value)
+                ? value[1]
+                : selectedMaxSurfaceArea
+
+        setSelectedMinSurfaceArea(updatedMinSurfaceArea)
+        setSelectedMaxSurfaceArea(updatedMaxSurfaceArea)
+
+        const surfaceAreaParam: URLSearchParams = createQueryString(
+            "superficie",
+            `${updatedMinSurfaceArea}&${updatedMaxSurfaceArea}`
+        )
+        router.push(pathname + "?" + surfaceAreaParam)
+    }
+
+    const updateSurfaceAreaPosition = (): void => {
+        if (surfaceAreaMinSpan.current && surfaceAreaMaxSpan.current && surfaceAreaRange.current) {
+            const range = surfaceAreaRange.current
+            const min = parseInt(range.getAttribute("min") || "0")
+            const max = parseInt(range.getAttribute("max") || "2500")
+            const width = range.offsetWidth
+            const left = ((selectedMinSurfaceArea - min) / (max - min)) * width
+            const right = ((selectedMaxSurfaceArea - min) / (max + 400 - min)) * width
+
+            surfaceAreaMinSpan.current.style.left = `${left}px`
+            surfaceAreaMaxSpan.current.style.left = `${right}px`
         }
     }
 
@@ -117,10 +148,15 @@ const FilterNav = () => {
         )
     }
 
+    useEffect(() => {
+        updatePricePosition()
+        updateSurfaceAreaPosition()
+    }, [selectedMinPrice, selectedMaxPrice, selectedMinSurfaceArea, selectedMaxSurfaceArea])
+
     return (
         <div className="fixed top-0 z-100 flex xl:w-48 bottom-0 flex-col border-b border-gray-800 bg-gray-900 lg:bottom-0 lg:z-auto lg:w-40 lg:border-r lg:border-gray-800">
             <div className="group h-14 flex items-center py-4 px-4 lg:h-auto">
-                <nav className="space-y-6 px-1 py-5 flex flex-col items-center justify-center">
+                <nav className="space-y-3 px-1 py-5 flex flex-col items-center justify-center">
                     <button
                         onClick={handleClearFilters}
                         className={
@@ -145,7 +181,7 @@ const FilterNav = () => {
                             return <FilterNavItems key={item.name} item={item} />
                         })}
                     </div>
-                    <div className="w-full px-4 relative">
+                    <div ref={priceRange} className="w-full px-2 relative">
                         <label className="text-gray-400 text-xs font-medium">Precio</label>
                         <Slider
                             range
@@ -158,35 +194,92 @@ const FilterNav = () => {
                         />
                         <span
                             ref={priceMinSpan}
-                            className="text-gray-300 px-1 bg-blue-500 rounded-md text-[12px] font-medium absolute -bottom-5 -mt-5"
+                            className="text-gray-300 px-1 bg-blue-500 rounded-md text-[12px] font-medium absolute bottom-8"
                         >
                             {selectedMinPrice}
                         </span>
                         <span
                             ref={priceMaxSpan}
-                            className="text-gray-300 px-1 bg-blue-500 rounded-md text-[12px] font-medium absolute -bottom-5 -mt-5"
+                            className="text-gray-300 px-1 bg-blue-500 rounded-md text-[12px] font-medium absolute bottom-8 "
                         >
                             {selectedMaxPrice}
                         </span>
+                        <div className="flex justify-center mt-7">
+                            <input
+                                type="number"
+                                id="min"
+                                value={selectedMinPrice === 0 ? "" : selectedMinPrice}
+                                placeholder="min"
+                                onChange={(event) => {
+                                    handlePrice(parseInt(event.target.value), event.target.id)
+                                }}
+                                className="w-[66px] h-5 p-2 text-xs bg-gray-800 text-gray-300 rounded-md"
+                            />
+                            <span className="text-gray-300 mx-2">-</span>
+                            <input
+                                type="number"
+                                id="max"
+                                value={selectedMaxPrice === 0 ? "" : selectedMaxPrice}
+                                placeholder="max"
+                                onChange={(event) => {
+                                    handlePrice(parseInt(event.target.value), event.target.id)
+                                }}
+                                className="w-[66px] h-5 p-2 text-xs bg-gray-800 text-gray-300 rounded-md"
+                            />
+                        </div>
                     </div>
-                    <div className="w-full px-4 relative">
+                    <div ref={surfaceAreaRange} className="w-full px-2 relative">
                         <label className="text-gray-400 text-xs font-medium">Superficie</label>
-                        <input
-                            ref={surfaceAreaRange}
-                            type="range"
-                            min="0"
-                            max="2500"
-                            step="100"
-                            value={selectedSurfaceArea}
-                            onChange={handleSurfaceArea}
-                            className="w-full mt-2 bg-blue-500"
+                        <Slider
+                            range
+                            min={0}
+                            max={2500}
+                            step={10}
+                            value={[selectedMinSurfaceArea, selectedMaxSurfaceArea]}
+                            onChange={(value: number | number[]) => handleSurfaceArea(value)}
+                            allowCross={false}
                         />
                         <span
-                            ref={surfaceAreaSpan}
-                            className="text-gray-300 px-1 bg-blue-500 rounded-md text-[12px] font-medium absolute -bottom-3 -mt-5"
+                            ref={surfaceAreaMinSpan}
+                            className="text-gray-300 px-1 bg-blue-500 rounded-md text-[12px] font-medium absolute bottom-8 "
                         >
-                            {selectedSurfaceArea}
+                            {selectedMinSurfaceArea}
                         </span>
+                        <span
+                            ref={surfaceAreaMaxSpan}
+                            className="text-gray-300 px-1 bg-blue-500 rounded-md text-[12px] font-medium absolute bottom-8 "
+                        >
+                            {selectedMaxSurfaceArea}
+                        </span>{" "}
+                        <div className="flex justify-center mt-7">
+                            <input
+                                type="number"
+                                id="min"
+                                value={selectedMinSurfaceArea === 0 ? "" : selectedMinSurfaceArea}
+                                placeholder="min"
+                                onChange={(event) => {
+                                    handleSurfaceArea(
+                                        parseInt(event.target.value),
+                                        event.target.id
+                                    )
+                                }}
+                                className="w-[66px] h-5 p-2 text-xs bg-gray-800 text-gray-300 rounded-md"
+                            />
+                            <span className="text-gray-300 mx-2">-</span>
+                            <input
+                                type="number"
+                                id="max"
+                                value={selectedMaxSurfaceArea === 0 ? "" : selectedMaxSurfaceArea}
+                                placeholder="max"
+                                onChange={(event) => {
+                                    handleSurfaceArea(
+                                        parseInt(event.target.value),
+                                        event.target.id
+                                    )
+                                }}
+                                className="w-[66px] h-5 p-2 text-xs bg-gray-800 text-gray-300 rounded-md"
+                            />
+                        </div>
                     </div>
                 </nav>
             </div>
