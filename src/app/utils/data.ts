@@ -1,6 +1,6 @@
-import { Category, Office } from "@/types/property"
+import { ICategory, IOffice } from "@/types/property"
 
-export const category: Category[] = [
+export const category: ICategory[] = [
     {
         name: "Departamento Nuevo",
     },
@@ -12,8 +12,8 @@ export const category: Category[] = [
     },
 ]
 
-export const office: Office = {
-    nombre: "Propital",
-    direccion: "Evaristo Lillo 48, Piso 10 Oficina 1002",
-    telefono: +56996158452,
+export const office: IOffice = {
+    name: "Propital",
+    direction: "Evaristo Lillo 48, Piso 10 Oficina 1002",
+    telephone: +56996158452,
 }

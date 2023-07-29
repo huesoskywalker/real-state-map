@@ -1,5 +1,5 @@
 import clientPromise from "@/lib/mongodb"
-import { Filter, Property } from "@/types/property"
+import { IFilter, IProperty } from "@/types/property"
 import { Collection, MongoClient } from "mongodb"
 import { NextResponse } from "next/server"
 
@@ -7,7 +7,7 @@ export async function POST(request: Request) {
     const req = await request.json()
     const { category, surfaceArea, price } = req.searchParams
 
-    const filter: Filter = {}
+    const filter: IFilter = {}
 
     if (category) {
         filter.category = category
@@ -26,10 +26,10 @@ export async function POST(request: Request) {
     }
     try {
         const client: MongoClient = await clientPromise
-        const collection: Collection<Property> = client
+        const collection: Collection<IProperty> = client
             .db("propitalDb")
-            .collection<Property>("properties")
-        const properties: Property[] = await collection.find<Property>(filter).toArray()
+            .collection<IProperty>("properties")
+        const properties: IProperty[] = await collection.find<IProperty>(filter).toArray()
         if (properties.length === 0) {
             return NextResponse.json({ status: 400, statusText: "No properties found" })
         }
