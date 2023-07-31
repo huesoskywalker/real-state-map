@@ -1,5 +1,5 @@
 import React from "react"
-import { office } from "../utils/data"
+import { office } from "../../utils/data"
 
 const OfficeData = ({}: {}) => {
     return (

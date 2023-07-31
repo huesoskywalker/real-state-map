@@ -11,7 +11,18 @@
 /// <reference path="../../../node_modules/cypress/types/cypress-global-vars.d.ts" />
 
 declare namespace Cypress {
-    interface Chainable<Subject = any> {}
+    import { ISearchParams } from "@/types/property"
+    import { ApiResponseBody } from "cypress-plugin-api"
+    interface Chainable<Subject = any> {
+        handlePostRequest(searchParams: ISearchParams): Cypress.Chainable
+        handleSuccess(response: ApiResponseBody, searchParams: ISearchParams): Cypress.Chainable
+        handleError(
+            response: ApiResponseBody,
+            responseBody: string,
+            responseStatus: number,
+            responseStatusText: string
+        ): Cypress.Chainable
+    }
     interface ApplicationWindow {
         // let TS know the application's code will add
         // method window.add with the following signature

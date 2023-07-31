@@ -21,8 +21,8 @@ export interface ICategory {
     name: string
 }
 
-export interface IFilter {
+export interface ISearchParams {
     category?: string
-    surfaceArea?: {}
-    price?: {}
+    surfaceArea?: string
+    price?: string
 }

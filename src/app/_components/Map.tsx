@@ -1,49 +1,26 @@
 "use client"
-import React, { useState } from "react"
-import { useMemo } from "react"
+import React from "react"
 import { GoogleMap, MarkerF, MarkerClustererF, useJsApiLoader } from "@react-google-maps/api"
-import { LatLngLiteral, MapContainer, MapOptions } from "@/types/google-maps-api"
 import { IProperty } from "@/types/property"
 import { officeMarker } from "../../../public/markers/officeMarker"
+
 import { getMarker } from "../_hooks/getMarker"
 import OfficeInfoWindow from "./OfficeInfoWindow"
 import PropertyInfoWindow from "./PropertyInfoWindow"
-
-const containerStyle: MapContainer = {
-    width: "600px",
-    height: "500px",
-}
-
-const center = useMemo<LatLngLiteral>(() => ({ lat: -33.413911, lng: -70.581883 }), [])
-
-const options = useMemo<MapOptions>(
-    () => ({
-        clickableIcons: false,
-    }),
-    []
-)
+import { center, containerStyle, options } from "@/utils/mapConfig"
+import { useMapLoader } from "../_hooks/useMapLoader"
+import { useShowOffice } from "../_hooks/useShowOffice"
+import { useSelectedProperty } from "../_hooks/useSelectedProperty"
 
 function Map({ properties }: { properties: IProperty[] }): React.JSX.Element {
-    const [selectedProperty, setSelectedProperty] = useState<IProperty | null>()
-    const [showOffice, setShowOffice] = useState<boolean>(false)
-
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey: "YOUR-API-KEY-WORK-GREAT-HERE" || process.env.GOOGLE_MAPS_API_KEY,
+        googleMapsApiKey: "YOUR-GOOGLE-MAP-API-KEY" || process.env.GOOGLE_MAPS_API_KEY,
     })
 
-    const [map, setMap] = React.useState(null)
-
-    const onLoad = React.useCallback(function callback(map: any) {
-        const bounds = new window.google.maps.LatLngBounds(center)
-        map.fitBounds(bounds)
-
-        setMap(map)
-    }, [])
-
-    const onUnmount = React.useCallback(function callback(map: any) {
-        setMap(null)
-    }, [])
+    const { onLoad, onUnmount } = useMapLoader()
+    const { showOffice, toggleShowOffice } = useShowOffice()
+    const { selectedProperty, selectProperty, clearSelectedProperty } = useSelectedProperty()
 
     return isLoaded ? (
         <GoogleMap
@@ -54,13 +31,9 @@ function Map({ properties }: { properties: IProperty[] }): React.JSX.Element {
             onUnmount={onUnmount}
             options={options}
         >
-            <MarkerF
-                position={center}
-                icon={{ url: officeMarker }}
-                onClick={() => setShowOffice(true)}
-            />
+            <MarkerF position={center} icon={{ url: officeMarker }} onClick={toggleShowOffice} />
             {showOffice ? (
-                <OfficeInfoWindow center={center} onCloseClick={() => setShowOffice(false)} />
+                <OfficeInfoWindow center={center} onCloseClick={toggleShowOffice} />
             ) : null}
             <MarkerClustererF>
                 {(clusterer) => (
@@ -76,7 +49,7 @@ function Map({ properties }: { properties: IProperty[] }): React.JSX.Element {
                                     position={property.location}
                                     icon={icon}
                                     clusterer={clusterer}
-                                    onClick={() => setSelectedProperty(property)}
+                                    onClick={() => selectProperty(property)}
                                 />
                             )
                         })}
@@ -86,7 +59,7 @@ function Map({ properties }: { properties: IProperty[] }): React.JSX.Element {
             {selectedProperty ? (
                 <PropertyInfoWindow
                     property={selectedProperty}
-                    onCloseClick={() => setSelectedProperty(null)}
+                    onCloseClick={clearSelectedProperty}
                 />
             ) : null}
         </GoogleMap>

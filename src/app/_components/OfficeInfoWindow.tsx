@@ -10,7 +10,7 @@ const OfficeInfoWindow = ({
 }: {
     center: LatLngLiteral
     onCloseClick: () => void
-}) => {
+}): React.JSX.Element => {
     return (
         <InfoWindowF position={center} onCloseClick={onCloseClick}>
             <OfficeData />

@@ -1,148 +1,193 @@
 /* global window */
 /// <reference path="../types.d.ts" />
 
-import { Property } from "@/types/property"
-import { propertyKeys } from "../support/keys"
+import { ISearchParams } from "@/types/property"
+import { ApiResponseBody } from "cypress-plugin-api"
 
 export {}
 
-describe("Test the REST API endpoint with no search parameters, with them and handle error when there are no properties", () => {
+describe("Test the REST API endpoint with no search parameters, with them and handle error when there are no properties or bad requests", () => {
     it("Should show all properties when no search parameters are provided", () => {
-        cy.api({
-            url: "/api/properties",
-            method: "POST",
-            headers: { "content-type": "application/json; charset=utf-8" },
-            body: JSON.stringify({ searchParams: {} }),
-        }).then((response) => {
-            const { body, headers, isOkStatusCode, status, statusText, requestHeaders } = response
-            console.log(body)
-            expect(requestHeaders).to.include({
-                "content-type": "application/json; charset=utf-8",
-            })
-            expect(status).to.equal(200)
-            expect(isOkStatusCode).to.equal(true)
-            expect(statusText).to.equal("OK")
-            expect(headers).to.include({ "content-type": "application/json" })
-            expect(body).to.be.an("array")
-            body.forEach((property: Property) => {
-                expect(property).to.have.all.keys(propertyKeys)
-                expect(property._id).to.be.a("string")
-                expect(property.category).to.be.a("string")
-                expect(property.description).to.be.a("string")
-                expect(property.name).to.be.a("string")
-                expect(property.price).to.be.a("number")
-                expect(property.surfaceArea).to.be.a("number")
-                expect(property.location).to.be.a("object").and.to.have.keys("lat", "lng")
-            })
+        const searchParams: ISearchParams = {}
+        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+            cy.handleSuccess(response, searchParams)
         })
     })
-    it("Should handle errors when there are no properties", () => {
-        const category: string = "Parcela"
-        const priceMinimo: number = 100
-        const priceMaximo: number = 500
-        const surfaceAreaMinima: number = 100
-        const surfaceAreaMaxima: number = 200
-        cy.api({
-            url: "/api/properties",
-            method: "POST",
-            headers: { "content-type": "application/json; charset=utf-8" },
-            body: JSON.stringify({
-                searchParams: {
-                    category: category,
-                    price: priceMinimo + "&" + priceMaximo,
-                    surfaceArea: surfaceAreaMinima + "&" + surfaceAreaMaxima,
-                },
-            }),
-        }).then((response) => {
-            expect(response.body.status).to.equal(400)
-            expect(response.body.statusText).to.equal("No properties found")
+    it("Should show all matching properties when Category and Price parameters are provided", () => {
+        const category: string = "Departamento Nuevo"
+        const minPrice: number = 50000
+        const maxPrice: number = 100000
+        const searchParams: ISearchParams = {
+            category: category,
+            price: `${minPrice}&${maxPrice}`,
+        }
+        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+            cy.handleSuccess(response, searchParams)
+        })
+    })
+    it("Should show all matching properties when Category and SurfaceArea parameters are provided", () => {
+        const category: string = "Departamento Nuevo"
+        const minSurfaceArea: number = 800
+        const maxSurfaceArea: number = 2100
+        const searchParams: ISearchParams = {
+            category: category,
+            surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
+        }
+        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+            cy.handleSuccess(response, searchParams)
+        })
+    })
+    it("Should show all matching properties when Price and SurfaceArea parameters are provided", () => {
+        const minPrice: number = 77000
+        const maxPrice: number = 110000
+        const minSurfaceArea: number = 700
+        const maxSurfaceArea: number = 1900
+        const searchParams: ISearchParams = {
+            price: `${minPrice}&${maxPrice}`,
+            surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
+        }
+        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+            cy.handleSuccess(response, searchParams)
+        })
+    })
+    it("Should show all matching properties when all parameters are provided", () => {
+        const category: string = "Departamento Nuevo"
+        const minPrice: number = 60000
+        const maxPrice: number = 900000
+        const minSurfaceArea: number = 1000
+        const maxSurfaceArea: number = 2400
+
+        const searchParams: ISearchParams = {
+            category: category,
+            price: `${minPrice}&${maxPrice}`,
+            surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
+        }
+
+        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+            cy.handleSuccess(response, searchParams)
         })
     })
 
-    it("Should show all properties when Category and Price parameters are provided", () => {
-        const category: string = "Departamento Nuevo"
-        const priceMinimo: number = 50000
-        const priceMaximo: number = 100000
-        cy.api({
-            url: "/api/properties",
-            method: "POST",
-            headers: { "content-type": "application/json; charset=utf-8" },
-            body: JSON.stringify({
-                searchParams: {
-                    category: category,
-                    price: priceMinimo + "&" + priceMaximo,
-                },
-            }),
-        }).then((response) => {
-            const { body, headers, isOkStatusCode, status, statusText, requestHeaders } = response
-            console.log(body)
-            expect(requestHeaders).to.include({
-                "content-type": "application/json; charset=utf-8",
-            })
-            expect(status).to.equal(200)
-            expect(isOkStatusCode).to.equal(true)
-            expect(statusText).to.equal("OK")
-            expect(headers).to.include({ "content-type": "application/json" })
-            expect(body).to.be.an("array")
-            body.forEach((property: Property) => {
-                expect(property).to.have.all.keys(propertyKeys)
-                expect(property._id).to.be.a("string")
-                expect(property.category).to.be.a("string").and.equal("Departamento Nuevo")
-                expect(property.description).to.be.a("string")
-                expect(property.name).to.be.a("string")
-                expect(property.price)
-                    .to.be.a("number")
-                    .and.to.be.at.least(priceMinimo)
-                    .and.to.be.at.most(priceMaximo)
-                expect(property.surfaceArea).to.be.a("number")
-                expect(property.location).to.be.a("object").and.to.have.keys("lat", "lng")
-            })
+    it("Should handle error when there are no properties matching criteria", () => {
+        const category: string = "Parcela"
+        const minPrice: number = 100
+        const maxPrice: number = 500
+        const minSurfaceArea: number = 100
+        const maxSurfaceArea: number = 200
+        const searchParams: ISearchParams = {
+            category: category,
+            price: `${minPrice}&${maxPrice}`,
+            surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
+        }
+        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+            const resBody = "No properties were found matching criteria"
+            cy.handleError(response, resBody, 404, "Not Found")
         })
     })
-    it("Should show all properties when all parameters are provided", () => {
+    it("Should handle error when there is an extra value is the price parameters", () => {
+        const category: string = "Parcela"
+        const minPrice: number = -50000
+        const maxPrice: number = 77000
+        const extraPriceParam: number = 110000
+        const searchParams: ISearchParams = {
+            category: category,
+            price: `${minPrice}&${maxPrice}&${extraPriceParam}`,
+        }
+        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+            const resBody = "Invalid price parameter"
+            cy.handleError(response, resBody, 400, "Bad Request")
+        })
+    })
+    it("Should handle error when minPrice value is a negative number", () => {
+        const category: string = "Parcela"
+        const minPrice: number = -50000
+        const maxPrice: number = 77000
+        const searchParams: ISearchParams = {
+            category: category,
+            price: `${minPrice}&${maxPrice}`,
+        }
+        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+            const resBody = "Invalid price value"
+            cy.handleError(response, resBody, 400, "Bad Request")
+        })
+    })
+    it("Should handle error when maxPrice value is a negative number", () => {
         const category: string = "Departamento Nuevo"
-        const priceMinimo: number = 60000
-        const priceMaximo: number = 900000
-        const surfaceAreaMinima: number = 1000
-        const surfaceAreaMaxima: number = 2400
-        cy.api({
-            url: "/api/properties",
-            method: "POST",
-            headers: { "content-type": "application/json; charset=utf-8" },
-            body: JSON.stringify({
-                searchParams: {
-                    category: category,
-                    price: priceMinimo + "&" + priceMaximo,
-                    surfaceArea: surfaceAreaMinima + "&" + surfaceAreaMaxima,
-                },
-            }),
-        }).then((response) => {
-            const { body, headers, isOkStatusCode, status, statusText, requestHeaders } = response
-            console.log(body)
-            expect(requestHeaders).to.include({
-                "content-type": "application/json; charset=utf-8",
-            })
-            expect(status).to.equal(200)
-            expect(isOkStatusCode).to.equal(true)
-            expect(statusText).to.equal("OK")
-            expect(headers).to.include({ "content-type": "application/json" })
-            expect(body).to.be.an("array")
-            body.forEach((property: Property) => {
-                expect(property).to.have.all.keys(propertyKeys)
-                expect(property._id).to.be.a("string")
-                expect(property.category).to.be.a("string").and.equal("Departamento Nuevo")
-                expect(property.description).to.be.a("string")
-                expect(property.name).to.be.a("string")
-                expect(property.price)
-                    .to.be.a("number")
-                    .and.to.be.at.least(priceMinimo)
-                    .and.to.be.at.most(priceMaximo)
-                expect(property.surfaceArea)
-                    .to.be.a("number")
-                    .and.to.be.at.least(surfaceAreaMinima)
-                    .and.to.be.at.most(surfaceAreaMaxima)
-                expect(property.location).to.be.a("object").and.to.have.keys("lat", "lng")
-            })
+        const minPrice: number = 55000
+        const maxPrice: number = -90000
+        const searchParams: ISearchParams = {
+            category: category,
+            price: `${minPrice}&${maxPrice}`,
+        }
+        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+            const resBody = "Invalid price value"
+            cy.handleError(response, resBody, 400, "Bad Request")
+        })
+    })
+    it("Should handle error when minPrice is greater than maxPrice", () => {
+        const category: string = "Departamento Nuevo"
+        const minPrice: number = 95000
+        const maxPrice: number = 70000
+        const searchParams: ISearchParams = {
+            category: category,
+            price: `${minPrice}&${maxPrice}`,
+        }
+        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+            const resBody = "Invalid price value"
+            cy.handleError(response, resBody, 400, "Bad Request")
+        })
+    })
+    it("Should handle error when there is an extra value in the surfaceArea parameter", () => {
+        const category: string = "Parcela"
+        const minSurfaceArea: number = -50000
+        const maxSurfaceArea: number = 77000
+        const extraSurfaceAreaParam: number = 113000
+        const searchParams: ISearchParams = {
+            category: category,
+            surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}&${extraSurfaceAreaParam}`,
+        }
+        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+            const resBody = "Invalid surfaceArea parameter"
+            cy.handleError(response, resBody, 400, "Bad Request")
+        })
+    })
+    it("Should handle error when minSurfaceArea value is a negative number", () => {
+        const category: string = "Parcela"
+        const minSurfaceArea: number = -50000
+        const maxSurfaceArea: number = 77000
+        const searchParams: ISearchParams = {
+            category: category,
+            surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
+        }
+        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+            const resBody = "Invalid surfaceArea value"
+            cy.handleError(response, resBody, 400, "Bad Request")
+        })
+    })
+    it("Should handle error when maxSurfaceArea value is a negative number", () => {
+        const category: string = "Departamento Seminuevo"
+        const minSurfaceArea: number = 60000
+        const maxSurfaceArea: number = -97000
+        const searchParams: ISearchParams = {
+            category: category,
+            surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
+        }
+        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+            const resBody = "Invalid surfaceArea value"
+            cy.handleError(response, resBody, 400, "Bad Request")
+        })
+    })
+    it("Should handle error when minSurfaceArea is greater than maxSurfaceArea ", () => {
+        const category: string = "Parcela"
+        const minSurfaceArea: number = 60000
+        const maxSurfaceArea: number = -97000
+        const searchParams: ISearchParams = {
+            category: category,
+            surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
+        }
+        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+            const resBody = "Invalid surfaceArea value"
+            cy.handleError(response, resBody, 400, "Bad Request")
         })
     })
 })
