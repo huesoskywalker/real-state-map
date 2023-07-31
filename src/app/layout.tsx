@@ -2,7 +2,9 @@ import "./globals.css"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import type { ReactNode } from "react"
-import FilterNav from "./_components/DELETE-FilterNav"
+import FilterNav from "./_components/FilterNav"
+import { FilterContextProvider } from "./_providers/FilterContextProvider"
+import { priceFilterOptions, surfaceAreaFilterOptions } from "@/utils/options"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -15,7 +17,12 @@ export default function RootLayout({ children }: { children: ReactNode }): JSX.E
     return (
         <html>
             <body className={`${inter.className} overflow-y-scroll bg-gray-900`}>
-                <FilterNav />
+                <FilterContextProvider
+                    priceFilterOptions={priceFilterOptions}
+                    surfaceAreaFilterOptions={surfaceAreaFilterOptions}
+                >
+                    <FilterNav />
+                </FilterContextProvider>
                 <div className="xl:pl-48 lg:pl-40">
                     <div className="mx-auto max-w-4xl px-2 pt-20 pb-8 lg:py-8 lg:px-8">
                         <div className="rounded-lg bg-vc-border-gradient p-px shadow-lg shadow-black/20">
