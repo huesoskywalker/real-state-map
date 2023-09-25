@@ -1,0 +1,21 @@
+version: "3"
+services:
+    app:
+        build:
+            context: .
+        ports:
+            - "3000:3000"
+        depends_on:
+            - mongo
+        environment:
+            - MONGODB_URI=mongodb://mongo:27017/propitalDb
+            - GOOGLE_MAPS_API_KEY=AIzaSyBc2RIEVLrFXYXV-r4u9x6q19x3iv_l5eo
+        volumes:
+            - ${PWD}:/src
+        restart: always
+    mongo:
+        image: mongo
+        ports:
+            - "27017:27017"
+        environment:
+            - MONGO_INITDB_DATABASE=propitalDb

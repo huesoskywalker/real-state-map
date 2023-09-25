@@ -6,7 +6,7 @@ export interface IQueryParam {
     query_id: string
 }
 export interface IFilter {
-    category?: string
-    surfaceArea?: {}
-    price?: {}
+    category: string
+    surfaceArea: {}
+    price: {}
 }

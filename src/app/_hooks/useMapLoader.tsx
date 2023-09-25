@@ -1,7 +1,7 @@
-import { center } from "@/utils/mapConfig"
+import { LatLngLiteral } from "@/types/google-maps-api"
 import { useCallback, useState } from "react"
 
-export function useMapLoader(): {
+export function useMapLoader(center: LatLngLiteral): {
     onLoad: (map: any) => void
     onUnmount: (map: any) => void
 } {

@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "lib": ["dom", "dom.iterable", "esnext"],
-        "types": ["node", "next", "cypress", "cypress-plugin-api"],
+        "target": "ES6",
+        "lib": ["DOM", "DOM.Iterable", "ESNext", "ES6"],
+        "types": ["bun-types", "next", "cypress", "cypress-plugin-api"],
         "allowJs": true,
         "skipLibCheck": true,
         "strict": true,
@@ -24,12 +24,6 @@
             "@/*": ["./src/*"]
         }
     },
-    "include": [
-        "next-env.d.ts",
-        "**/*.ts",
-        "**/*.tsx",
-        ".next/types/**/*.ts",
-        "src/utils/insert-data.ts"
-    ],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "populate-db.ts"],
     "exclude": ["node_modules"]
 }

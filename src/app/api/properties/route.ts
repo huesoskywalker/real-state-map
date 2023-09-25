@@ -7,7 +7,7 @@ import { NextResponse } from "next/server"
 export async function POST(request: Request) {
     const req = await request.json()
     const { category, surfaceArea, price } = req.searchParams as ISearchParams
-    const filter: IFilter = {}
+    const filter: Partial<IFilter> = {}
 
     if (category) {
         filter.category = category
