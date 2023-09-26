@@ -5,8 +5,14 @@ export interface IFilterOptions {
 export interface IQueryParam {
     query_id: string
 }
-export interface IFilter {
+export interface Filter {
     category: string
-    surfaceArea: {}
-    price: {}
+    surfaceArea: {
+        $lte: number
+        $gte: number
+    }
+    price: {
+        $lte: number
+        $gte: number
+    }
 }

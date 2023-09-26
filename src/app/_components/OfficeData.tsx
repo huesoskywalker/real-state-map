@@ -1,7 +1,7 @@
 import React from "react"
 import { office } from "../../utils/data"
 
-const OfficeData = ({}: {}) => {
+const OfficeData = () => {
     return (
         <div className="max-w-xs p-4">
             <h2 className="text-xl font-semibold text-gray-800">{office.name}</h2>

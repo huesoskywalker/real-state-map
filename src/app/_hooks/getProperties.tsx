@@ -1,20 +1,18 @@
 import { CustomError } from "@/errors/CustomError"
 import { IResponseHeaders } from "@/types/axios"
-import { IProperty } from "@/types/property"
+import { Property } from "@/types/property"
 import axios, { AxiosError, AxiosResponse } from "axios"
 
 export const getProperties = async ({
     searchParams,
 }: {
-    searchParams: { [key: string]: string }
-}): Promise<IProperty[] | CustomError> => {
+    searchParams: URLSearchParams
+}): Promise<Property[] | CustomError> => {
     try {
-        const properties: AxiosResponse<IProperty[], IResponseHeaders> = await axios.post(
-            `http://localhost:3000/api/properties`,
-            {
-                searchParams,
-            }
+        const properties: AxiosResponse<Property[], IResponseHeaders> = await axios.get(
+            `http://localhost:3000/api/properties?${searchParams}`
         )
+
         return properties.data
     } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -22,11 +20,11 @@ export const getProperties = async ({
             if (axiosError.response) {
                 const status = axiosError.response?.status
                 const data = axiosError.response?.data
-                const customError = new CustomError(status, data as string)
+                const customError: CustomError = new CustomError(status, data as string)
                 return customError
             }
         }
-        throw error
+        throw new Error(`An unexpected Error Occurred, ${error}`)
     }
 }
 

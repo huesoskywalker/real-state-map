@@ -9,9 +9,9 @@ services:
             - mongo
         environment:
             - MONGODB_URI=mongodb://mongo:27017/propitalDb
-            - GOOGLE_MAPS_API_KEY=YOUR-API-KEY-HERE
+            - GOOGLE_MAPS_API_KEY=AIzaSyBc2RIEVLrFXYXV-r4u9x6q19x3iv_l5eo
         volumes:
-            - ${PWD}:/src
+            - ${PWD}:${PWD}
         restart: always
     mongo:
         image: mongo

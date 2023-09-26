@@ -4,4 +4,4 @@ if [ ! -f /data/.initialized ]; then
     touch ./data/.initialized
 fi
 
-exec bun dev
+exec bun dev 

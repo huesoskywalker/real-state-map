@@ -1,7 +1,7 @@
 "use client"
 import React from "react"
 import { GoogleMap, MarkerF, MarkerClustererF, useJsApiLoader } from "@react-google-maps/api"
-import { IProperty } from "@/types/property"
+import { Property } from "@/types/property"
 import { officeMarker } from "../../../public/markers/officeMarker"
 
 import { getMarker } from "../_hooks/getMarker"
@@ -13,7 +13,7 @@ import { useSelectedProperty } from "../_hooks/useSelectedProperty"
 import { LatLngLiteral, MapContainer, MapOptions } from "@/types/google-maps-api"
 import { useMemo } from "react"
 
-function Map({ properties }: { properties: IProperty[] }): React.JSX.Element {
+function Map({ properties }: { properties: Property[] }): React.JSX.Element {
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
         googleMapsApiKey: "YOUR-GOOGLE-MAP-API-KEY" || process.env.GOOGLE_MAPS_API_KEY,
@@ -51,7 +51,7 @@ function Map({ properties }: { properties: IProperty[] }): React.JSX.Element {
             <MarkerClustererF>
                 {(clusterer) => (
                     <>
-                        {properties?.map((property: IProperty) => {
+                        {properties?.map((property: Property) => {
                             const iconUrl: string | undefined = getMarker(property.category)
                             const icon: { url: string } | undefined = iconUrl
                                 ? { url: iconUrl }

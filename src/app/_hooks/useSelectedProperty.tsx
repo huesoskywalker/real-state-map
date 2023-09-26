@@ -1,14 +1,14 @@
 import { useState } from "react"
-import { IProperty } from "@/types/property"
+import { Property } from "@/types/property"
 
 export function useSelectedProperty(): {
-    selectedProperty: IProperty | null
-    selectProperty: (property: IProperty) => void
+    selectedProperty: Property | null
+    selectProperty: (property: Property) => void
     clearSelectedProperty: () => void
 } {
-    const [selectedProperty, setSelectedProperty] = useState<IProperty | null>(null)
+    const [selectedProperty, setSelectedProperty] = useState<Property | null>(null)
 
-    const selectProperty = (property: IProperty) => {
+    const selectProperty = (property: Property) => {
         setSelectedProperty(property)
     }
 

@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb"
 import { LatLngLiteral } from "./google-maps-api"
 
-export interface IProperty {
+export interface Property {
     readonly _id: ObjectId | string
     name: string
     location: LatLngLiteral
@@ -22,7 +22,7 @@ export interface ICategory {
 }
 
 export interface ISearchParams {
-    category?: string
-    surfaceArea?: string
-    price?: string
+    category: string
+    surfaceArea: string
+    price: string
 }

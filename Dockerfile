@@ -21,4 +21,3 @@ EXPOSE 3000
 
 #Start the app
 ENTRYPOINT [ "./entrypoint.sh" ]
-# CMD ["bun", "dev"]

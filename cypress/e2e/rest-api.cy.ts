@@ -8,7 +8,7 @@ export {}
 
 describe("Test the REST API endpoint with no search parameters, with them and handle error when there are no properties or bad requests", () => {
     it("Should show all properties when no search parameters are provided", () => {
-        const searchParams: ISearchParams = {}
+        const searchParams: Partial<ISearchParams> = {}
         cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
             cy.handleSuccess(response, searchParams)
         })
@@ -17,7 +17,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
         const category: string = "Departamento Nuevo"
         const minPrice: number = 50000
         const maxPrice: number = 100000
-        const searchParams: ISearchParams = {
+        const searchParams: Partial<ISearchParams> = {
             category: category,
             price: `${minPrice}&${maxPrice}`,
         }
@@ -29,7 +29,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
         const category: string = "Departamento Nuevo"
         const minSurfaceArea: number = 800
         const maxSurfaceArea: number = 2100
-        const searchParams: ISearchParams = {
+        const searchParams: Partial<ISearchParams> = {
             category: category,
             surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
         }
@@ -42,7 +42,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
         const maxPrice: number = 110000
         const minSurfaceArea: number = 700
         const maxSurfaceArea: number = 1900
-        const searchParams: ISearchParams = {
+        const searchParams: Partial<ISearchParams> = {
             price: `${minPrice}&${maxPrice}`,
             surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
         }
@@ -89,7 +89,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
         const minPrice: number = -50000
         const maxPrice: number = 77000
         const extraPriceParam: number = 110000
-        const searchParams: ISearchParams = {
+        const searchParams: Partial<ISearchParams> = {
             category: category,
             price: `${minPrice}&${maxPrice}&${extraPriceParam}`,
         }
@@ -102,7 +102,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
         const category: string = "Parcela"
         const minPrice: number = -50000
         const maxPrice: number = 77000
-        const searchParams: ISearchParams = {
+        const searchParams: Partial<ISearchParams> = {
             category: category,
             price: `${minPrice}&${maxPrice}`,
         }
@@ -115,7 +115,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
         const category: string = "Departamento Nuevo"
         const minPrice: number = 55000
         const maxPrice: number = -90000
-        const searchParams: ISearchParams = {
+        const searchParams: Partial<ISearchParams> = {
             category: category,
             price: `${minPrice}&${maxPrice}`,
         }
@@ -128,7 +128,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
         const category: string = "Departamento Nuevo"
         const minPrice: number = 95000
         const maxPrice: number = 70000
-        const searchParams: ISearchParams = {
+        const searchParams: Partial<ISearchParams> = {
             category: category,
             price: `${minPrice}&${maxPrice}`,
         }
@@ -142,7 +142,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
         const minSurfaceArea: number = -50000
         const maxSurfaceArea: number = 77000
         const extraSurfaceAreaParam: number = 113000
-        const searchParams: ISearchParams = {
+        const searchParams: Partial<ISearchParams> = {
             category: category,
             surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}&${extraSurfaceAreaParam}`,
         }
@@ -155,7 +155,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
         const category: string = "Parcela"
         const minSurfaceArea: number = -50000
         const maxSurfaceArea: number = 77000
-        const searchParams: ISearchParams = {
+        const searchParams: Partial<ISearchParams> = {
             category: category,
             surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
         }
@@ -168,7 +168,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
         const category: string = "Departamento Seminuevo"
         const minSurfaceArea: number = 60000
         const maxSurfaceArea: number = -97000
-        const searchParams: ISearchParams = {
+        const searchParams: Partial<ISearchParams> = {
             category: category,
             surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
         }
@@ -181,7 +181,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
         const category: string = "Parcela"
         const minSurfaceArea: number = 60000
         const maxSurfaceArea: number = -97000
-        const searchParams: ISearchParams = {
+        const searchParams: Partial<ISearchParams> = {
             category: category,
             surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
         }

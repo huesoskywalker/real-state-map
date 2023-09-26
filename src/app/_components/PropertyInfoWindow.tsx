@@ -1,13 +1,13 @@
 import { InfoWindowF } from "@react-google-maps/api"
 import React from "react"
 import PropertyData from "./PropertyData"
-import { IProperty } from "@/types/property"
+import { Property } from "@/types/property"
 
 const PropertyInfoWindow = ({
     property,
     onCloseClick,
 }: {
-    property: IProperty
+    property: Property
     onCloseClick: () => void
 }) => {
     return (

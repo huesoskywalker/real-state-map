@@ -1,13 +1,15 @@
 import clientPromise from "@/lib/mongodb"
-import { IFilter } from "@/types/filter"
-import { IProperty, ISearchParams } from "@/types/property"
+import { Filter } from "@/types/filter"
+import { Property } from "@/types/property"
 import { Collection, MongoClient } from "mongodb"
 import { NextResponse } from "next/server"
 
-export async function POST(request: Request) {
-    const req = await request.json()
-    const { category, surfaceArea, price } = req.searchParams as ISearchParams
-    const filter: Partial<IFilter> = {}
+export async function GET(request: Request) {
+    const { searchParams } = new URL(request.url)
+    const category: string | null = searchParams.get("category")
+    const price: string | null = searchParams.get("price")
+    const surfaceArea: string | null = searchParams.get("surfaceArea")
+    const filter: Partial<Filter> = {}
 
     if (category) {
         filter.category = category
@@ -44,16 +46,15 @@ export async function POST(request: Request) {
     }
     try {
         const client: MongoClient = await clientPromise
-        const collection: Collection<IProperty> = client
+        const collection: Collection<Property> = client
             .db("propitalDb")
-            .collection<IProperty>("properties")
-        const properties: IProperty[] = await collection.find<IProperty>(filter).toArray()
+            .collection<Property>("properties")
+        const properties: Property[] = await collection.find<Property>(filter).toArray()
         if (properties.length === 0) {
             return NextResponse.json("No properties were found matching criteria", { status: 404 })
         }
         return NextResponse.json(properties)
     } catch (error) {
-        console.log(error)
         return NextResponse.json("Internal Server Error", { status: 500 })
     }
 }

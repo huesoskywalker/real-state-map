@@ -9,8 +9,6 @@ export function useSurfaceAreaFilter({ query_id }: IQueryParam): {
     handleSurfaceAreaSlider: (value: number | number[]) => void
     handleSurfaceAreaInput: (event: ChangeEvent<HTMLInputElement>) => void
 } {
-    const router: AppRouterInstance = useRouter()
-    const pathname: string = usePathname()
     const {
         selectedMinSurfaceArea,
         selectedMaxSurfaceArea,
@@ -31,11 +29,7 @@ export function useSurfaceAreaFilter({ query_id }: IQueryParam): {
         updateMinSurfaceArea(updatedMinSurfaceAreaValue)
         updateMaxSurfaceArea(updatedMaxSurfaceAreaValue)
 
-        const surfaceAreaParam: URLSearchParams = createQueryString(
-            query_id,
-            `${updatedMinSurfaceAreaValue}&${updatedMaxSurfaceAreaValue}`
-        )
-        router.push(pathname + "?" + surfaceAreaParam)
+        createQueryString(query_id, `${updatedMinSurfaceAreaValue}&${updatedMaxSurfaceAreaValue}`)
     }
 
     const handleSurfaceAreaInput = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -48,11 +42,7 @@ export function useSurfaceAreaFilter({ query_id }: IQueryParam): {
         updateMinSurfaceArea(updatedMinSurfaceAreaValue)
         updateMaxSurfaceArea(updatedMaxSurfaceAreaValue)
 
-        const surfaceAreaParam: URLSearchParams = createQueryString(
-            query_id,
-            `${updatedMinSurfaceAreaValue}&${updatedMaxSurfaceAreaValue}`
-        )
-        router.push(pathname + "?" + surfaceAreaParam)
+        createQueryString(query_id, `${updatedMinSurfaceAreaValue}&${updatedMaxSurfaceAreaValue}`)
     }
 
     return {
