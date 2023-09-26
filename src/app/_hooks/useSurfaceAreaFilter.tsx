@@ -1,6 +1,4 @@
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context"
-import { usePathname, useRouter } from "next/navigation"
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent } from "react"
 import { useQueryString } from "./useQueryString"
 import { useContextFilter } from "./useContextFilter"
 import { IQueryParam } from "@/types/filter"
