@@ -2,14 +2,14 @@
     "compilerOptions": {
         "target": "ES6",
         "lib": ["DOM", "DOM.Iterable", "ESNext", "ES6"],
-        "types": ["bun-types", "next", "cypress", "cypress-plugin-api"],
+        "types": ["node", "next", "cypress", "cypress-plugin-api"],
         "allowJs": true,
         "skipLibCheck": true,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "noEmit": true,
         "esModuleInterop": true,
-        "module": "esnext",
+        "module": "CommonJS",
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "isolatedModules": true,
@@ -24,6 +24,12 @@
             "@/*": ["./src/*"]
         }
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "populate-db.ts"],
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        ".next/types/**/*.ts",
+        "src/lib/populate-db.ts"
+    ],
     "exclude": ["node_modules"]
 }

@@ -3,7 +3,7 @@
 export {}
 /// <reference types="cypress" />
 
-import { ISearchParams, IProperty } from "@/types/property"
+import { ISearchParams, Property } from "@/types/property"
 import { ApiResponseBody } from "cypress-plugin-api"
 import { propertyKeys } from "./keys"
 
@@ -29,14 +29,11 @@ Cypress.Commands.add(
     }
 )
 
-Cypress.Commands.add("handlePostRequest", (searchParams: ISearchParams) => {
+Cypress.Commands.add("handleGetRequest", (searchParams: ISearchParams) => {
     cy.api({
-        url: "/api/properties",
-        method: "POST",
+        url: `/api/properties?${searchParams}`,
+        method: "GET",
         headers: { "content-type": "application/json; charset=utf-8" },
-        body: JSON.stringify({
-            searchParams,
-        }),
         failOnStatusCode: false,
     })
 })
@@ -51,7 +48,7 @@ Cypress.Commands.add("handleSuccess", (response: ApiResponseBody, searchParams: 
     expect(statusText).to.equal("OK")
     expect(headers).to.include({ "content-type": "application/json" })
     expect(body).to.be.an("array")
-    body.forEach((property: IProperty) => {
+    body.forEach((property: Property) => {
         expect(property).to.have.all.keys(propertyKeys)
         expect(property._id).to.be.a("string")
         if (searchParams.category) {

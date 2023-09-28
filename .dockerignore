@@ -1,6 +1,10 @@
+Dockerfile
 node_modules
+/node_modules
+node_modules/
 .git
 .next
+README.md
 
 # Ignore temporary files or directories
 .tmp

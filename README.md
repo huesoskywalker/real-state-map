@@ -7,11 +7,8 @@
 -   [Technologies](#technologies)
 -   [Getting Started](#getting-started)
     -   [Prerequisites](#prerequisites)
-    -   [Installation](#installation)
-    -   [Running the MongoDB Database](#running-the-mongodb-database)
-    -   [Inserting Data into the Database](#inserting-data-into-the-database)
-    -   [Running the API](#running-the-api)
--   [Testing](#testing)
+    -   [Running with Docker](#running-with-docker)
+    -   [Tests with Cypress Logs](#tests-with-cypress-logs)
 -   [Contributing](#contributing)
 -   [Architecture Decision Record](#architecture-decision-record)
 
@@ -42,10 +39,9 @@ Propital is a RESTful API that allows clients to explore real estate projects on
 
 ### Prerequisites
 
--   Node.js and npm installed on your machine.
--   MongoDB installed and running locally or a connection to a MongoDB cloud service.
+-   Docker installed on your machine
 
-### Installation
+### Running with Docker
 
 1. Clone this repository to your local machine:
 
@@ -59,76 +55,29 @@ Propital is a RESTful API that allows clients to explore real estate projects on
     cd your-repo-name
     ```
 
-3. Install the dependencies:
-    ```
-    yarn install
-    ```
-
-### Running the MongoDB Database
-
-1. Start the MongoDB service on your machine. In Linux, you can use the following commands:
+3. Add your Google API Key in the docker-compose.yaml file
 
     ```
-    sudo systemctl start mongod
+    GOOGLE_MAPS_API_KEY="GOOGLE-API-KEY-HERE"
+    or
+    Directly in the Map Component to avoid Developer Only watermarks
     ```
 
-2. Connect to the MongoDB shell:
-    ```
-    mongosh
-    ```
-
-### Inserting Data into the Database
-
-1. Create a new database named `propitalDb` in the MongoDB shell:
+4. Build and run Docker containers:
 
     ```
-    use propitalDb
+    docker-compose up -d
     ```
 
-2. Create a collection named `properties`:
+5. The application will be running at `http://localhost:3000`
 
-    ```
-    db.createCollection('properties')
-    ```
+### Tests with Cypress Logs
 
-3. In the project's `public/data` directory, you will find a `properties.json` file with random data for properties. Copy the data from the `properties.json` file.
+To see the tests of the application run the following command:
 
-4. Insert the data into the `properties` collection in the MongoDB shell:
-    ```
-    db.properties.insertMany(// paste the data here)
-    ```
-
-### Running the API
-
-1. Create a `.env.local` file in the root of the project and add the necessary environment variables:
-
-    ```
-    MONGODB_URI=<your-mongodb-uri>
-    GOOGLE_MAPS_API_KEY=<your-google-maps-api-key>
-    ```
-
-    When using the Google maps API key on the .env.local file, I got water marks with Developer only, So placing the API key in the MapComponent directly will work great
-
-2. Start the APP:
-
-    ```
-    yarn dev
-    ```
-
-3. The APP will now be running at `http://localhost:3000`.
-
-For testing the REST API endpoint, you can run the following commands:
-
--   To use the Cypress GUI:
-
-    ```
-    yarn cypress:open
-    ```
-
--   To run the tests through the terminal:
-    ```
-    yarn cypress:run
-    ```
+```
+docker logs <cypress-container-id>
+```
 
 ## Contributing
 

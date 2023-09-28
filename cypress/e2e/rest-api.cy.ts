@@ -9,7 +9,7 @@ export {}
 describe("Test the REST API endpoint with no search parameters, with them and handle error when there are no properties or bad requests", () => {
     it("Should show all properties when no search parameters are provided", () => {
         const searchParams: Partial<ISearchParams> = {}
-        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+        cy.handleGetRequest(searchParams).then((response: ApiResponseBody) => {
             cy.handleSuccess(response, searchParams)
         })
     })
@@ -21,7 +21,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
             category: category,
             price: `${minPrice}&${maxPrice}`,
         }
-        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+        cy.handleGetRequest(searchParams).then((response: ApiResponseBody) => {
             cy.handleSuccess(response, searchParams)
         })
     })
@@ -33,7 +33,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
             category: category,
             surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
         }
-        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+        cy.handleGetRequest(searchParams).then((response: ApiResponseBody) => {
             cy.handleSuccess(response, searchParams)
         })
     })
@@ -46,7 +46,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
             price: `${minPrice}&${maxPrice}`,
             surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
         }
-        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+        cy.handleGetRequest(searchParams).then((response: ApiResponseBody) => {
             cy.handleSuccess(response, searchParams)
         })
     })
@@ -63,7 +63,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
             surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
         }
 
-        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+        cy.handleGetRequest(searchParams).then((response: ApiResponseBody) => {
             cy.handleSuccess(response, searchParams)
         })
     })
@@ -79,7 +79,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
             price: `${minPrice}&${maxPrice}`,
             surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
         }
-        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+        cy.handleGetRequest(searchParams).then((response: ApiResponseBody) => {
             const resBody = "No properties were found matching criteria"
             cy.handleError(response, resBody, 404, "Not Found")
         })
@@ -93,7 +93,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
             category: category,
             price: `${minPrice}&${maxPrice}&${extraPriceParam}`,
         }
-        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+        cy.handleGetRequest(searchParams).then((response: ApiResponseBody) => {
             const resBody = "Invalid price parameter"
             cy.handleError(response, resBody, 400, "Bad Request")
         })
@@ -106,7 +106,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
             category: category,
             price: `${minPrice}&${maxPrice}`,
         }
-        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+        cy.handleGetRequest(searchParams).then((response: ApiResponseBody) => {
             const resBody = "Invalid price value"
             cy.handleError(response, resBody, 400, "Bad Request")
         })
@@ -119,7 +119,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
             category: category,
             price: `${minPrice}&${maxPrice}`,
         }
-        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+        cy.handleGetRequest(searchParams).then((response: ApiResponseBody) => {
             const resBody = "Invalid price value"
             cy.handleError(response, resBody, 400, "Bad Request")
         })
@@ -132,7 +132,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
             category: category,
             price: `${minPrice}&${maxPrice}`,
         }
-        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+        cy.handleGetRequest(searchParams).then((response: ApiResponseBody) => {
             const resBody = "Invalid price value"
             cy.handleError(response, resBody, 400, "Bad Request")
         })
@@ -146,7 +146,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
             category: category,
             surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}&${extraSurfaceAreaParam}`,
         }
-        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+        cy.handleGetRequest(searchParams).then((response: ApiResponseBody) => {
             const resBody = "Invalid surfaceArea parameter"
             cy.handleError(response, resBody, 400, "Bad Request")
         })
@@ -159,7 +159,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
             category: category,
             surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
         }
-        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+        cy.handleGetRequest(searchParams).then((response: ApiResponseBody) => {
             const resBody = "Invalid surfaceArea value"
             cy.handleError(response, resBody, 400, "Bad Request")
         })
@@ -172,7 +172,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
             category: category,
             surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
         }
-        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+        cy.handleGetRequest(searchParams).then((response: ApiResponseBody) => {
             const resBody = "Invalid surfaceArea value"
             cy.handleError(response, resBody, 400, "Bad Request")
         })
@@ -185,7 +185,7 @@ describe("Test the REST API endpoint with no search parameters, with them and ha
             category: category,
             surfaceArea: `${minSurfaceArea}&${maxSurfaceArea}`,
         }
-        cy.handlePostRequest(searchParams).then((response: ApiResponseBody) => {
+        cy.handleGetRequest(searchParams).then((response: ApiResponseBody) => {
             const resBody = "Invalid surfaceArea value"
             cy.handleError(response, resBody, 400, "Bad Request")
         })

@@ -9,12 +9,13 @@ services:
             - mongo
         environment:
             - MONGODB_URI=mongodb://mongo:27017/propitalDb
-            - GOOGLE_MAPS_API_KEY=AIzaSyBc2RIEVLrFXYXV-r4u9x6q19x3iv_l5eo
+            - GOOGLE_MAPS_API_KEY="GOOGLE-API-KEY-HERE"
         volumes:
             - ${PWD}:${PWD}
         restart: always
     mongo:
         image: mongo
+        restart: always
         ports:
             - "27017:27017"
         environment:

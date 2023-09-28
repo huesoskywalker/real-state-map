@@ -14,7 +14,7 @@ declare namespace Cypress {
     import { ISearchParams } from "@/types/property"
     import { ApiResponseBody } from "cypress-plugin-api"
     interface Chainable<Subject = any> {
-        handlePostRequest(searchParams: ISearchParams): Cypress.Chainable
+        handleGetRequest(searchParams: ISearchParams): Cypress.Chainable
         handleSuccess(response: ApiResponseBody, searchParams: ISearchParams): Cypress.Chainable
         handleError(
             response: ApiResponseBody,

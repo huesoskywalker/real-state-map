@@ -1,12 +1,12 @@
 import path from "path"
-import clientPromise from "./src/lib/mongodb"
-
+import fs from "fs"
+import clientPromise from "./mongodb"
 const insertProperties = async () => {
     let client = null
-    const propertiesFilePath = path.join(__dirname, "/public/data/properties.json")
-    const text = await Bun.file(propertiesFilePath).text()
-    const propertiesData = JSON.parse(text)
+    const propertiesFilePath = path.join(__dirname, "../../public/data/properties.json")
     try {
+        const text = fs.readFileSync(propertiesFilePath, "utf-8")
+        const propertiesData = JSON.parse(text)
         client = await clientPromise
         const db = client.db("propitalDb")
         if (!(await db.listCollections({ name: "properties" }).hasNext())) {
