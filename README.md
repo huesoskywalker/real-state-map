@@ -46,20 +46,20 @@ Propital is a RESTful API that allows clients to explore real estate projects on
 1. Clone this repository to your local machine:
 
     ```
-    git clone https://github.com/your-username/your-repo-name.git
+    git clone https://github.com/huesoskywalker/google-maps-api.git
     ```
 
 2. Navigate to the project folder:
 
     ```
-    cd your-repo-name
+    cd google-maps-api
     ```
 
 3. Add your Google API Key in the docker-compose.yaml file
 
     ```
     GOOGLE_MAPS_API_KEY="GOOGLE-API-KEY-HERE"
-    or
+        or
     Directly in the Map Component to avoid Developer Only watermarks
     ```
 

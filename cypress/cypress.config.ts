@@ -1,7 +1,7 @@
 import { defineConfig } from "cypress"
 export default defineConfig({
     e2e: {
-        baseUrl: "http://localhost:3000",
+        // baseUrl: "http://app:3000",
         chromeWebSecurity: false,
         viewportWidth: 1024,
         viewportHeight: 768,
@@ -15,5 +15,6 @@ export default defineConfig({
             snapshotOnly: true,
             hideCredentials: true,
         },
+        supportFile: "/cypress/support/e2e.ts",
     },
 })

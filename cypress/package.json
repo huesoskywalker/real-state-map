@@ -1,0 +1,16 @@
+{
+    "name": "real-state-tests",
+    "version": "0.1.0",
+    "private": true,
+    "author": "Hueso Skywalker",
+    "scripts": {
+        "cypress:run": "cypress run"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@testing-library/cypress": "^9.0.0",
+        "cypress": "^12.17.1",
+        "cypress-plugin-api": "^2.11.1",
+        "typescript": "^5.1.6"
+    }
+}

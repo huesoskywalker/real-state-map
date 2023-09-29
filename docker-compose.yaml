@@ -20,3 +20,13 @@ services:
             - "27017:27017"
         environment:
             - MONGO_INITDB_DATABASE=propitalDb
+    cypress:
+        build:
+            context: .
+            dockerfile: ./cypress/Dockerfile
+        environment:
+            - CYPRESS_baseUrl=http://app:3000
+        volumes:
+            - ${PWD}:${PWD}
+        depends_on:
+            - app

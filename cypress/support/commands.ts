@@ -3,9 +3,9 @@
 export {}
 /// <reference types="cypress" />
 
-import { ISearchParams, Property } from "@/types/property"
 import { ApiResponseBody } from "cypress-plugin-api"
-import { propertyKeys } from "./keys"
+import { ISearchParams, Property } from "./types/property"
+import { propertyKeys } from "./constants/keys"
 
 export {}
 

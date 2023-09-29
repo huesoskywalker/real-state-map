@@ -1,11 +1,20 @@
+#Docker
 Dockerfile
+
+# Modules
 node_modules
 /node_modules
-node_modules/
+
+# Git
 .git
+
+# Next
 .next
+
+# Files 
 README.md
 
-# Ignore temporary files or directories
+# Directories
+cypress
 .tmp
 .build

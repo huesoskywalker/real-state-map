@@ -1,6 +1,6 @@
-import { IProperty } from "@/types/property"
+import { Property } from "../types/property"
 
-export const propertyKeys: (keyof IProperty)[] = [
+export const propertyKeys: (keyof Property)[] = [
     "_id",
     "category",
     "description",

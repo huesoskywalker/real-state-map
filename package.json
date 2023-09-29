@@ -1,5 +1,5 @@
 {
-    "name": "propital-technical-test",
+    "name": "real-state-google-maps",
     "version": "0.1.0",
     "private": true,
     "author": "Hueso Skywalker",
@@ -8,8 +8,6 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "cypress:open": "cypress open",
-        "cypress:run": "cypress run",
         "populate-db": "yarn ts-node ./src/lib/populate-db.ts"
     },
     "dependencies": {
@@ -26,14 +24,11 @@
         "react-dom": "18.2.0"
     },
     "devDependencies": {
-        "@testing-library/cypress": "^9.0.0",
         "@types/lodash": "^4.14.199",
         "@types/node": "^20.4.2",
         "@types/react": "^18.2.15",
         "@types/react-dom": "^18.2.7",
         "autoprefixer": "^10.4.14",
-        "cypress": "^12.17.1",
-        "cypress-plugin-api": "^2.11.1",
         "postcss": "^8.4.26",
         "tailwindcss": "^3.3.3",
         "ts-node": "^10.9.1",
