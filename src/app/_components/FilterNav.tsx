@@ -8,9 +8,9 @@ import CategoryFilter from "./CategoryFilter"
 
 const FilterNav = (): React.JSX.Element => {
     return (
-        <div className="fixed top-0 z-100 flex xl:w-48 bottom-0 flex-col border-b border-gray-800 bg-gray-900 lg:bottom-0 lg:z-auto lg:w-40 lg:border-r lg:border-gray-800">
-            <div className="group h-14 flex items-center py-4 px-4 lg:h-auto">
-                <nav className="space-y-3 px-1 py-5 flex flex-col items-center justify-center">
+        <div className="fixed min-h-screen top-0 pl-2 flex flex-col justify-between bg-gray-800 py-2 border-r border-gray-500 w-56">
+            <div className="group h-auto flex items-center py-4 px-4">
+                <nav className="space-y-3 px-1 flex flex-col items-center justify-center">
                     <ClearFilters />
                     <label className="text-gray-200 text-xs">Category</label>
                     <CategoryFilter />

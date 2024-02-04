@@ -14,14 +14,12 @@ import { LatLngLiteral, MapContainer, MapOptions } from "@/types/google-maps-api
 import { useMemo } from "react"
 
 function Map({ properties }: { properties: Property[] }): React.JSX.Element {
-    if (!process.env.GOOGLE_MAPS_API_KEY) {
+    if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY) {
         throw new Error(`Google Maps API key is missing or undefined`)
     }
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey:
-            "Google Api key here to avoid Developer Only watermarks" ||
-            process.env.GOOGLE_MAPS_API_KEY,
+        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     })
     const containerStyle: MapContainer = {
         width: "600px",

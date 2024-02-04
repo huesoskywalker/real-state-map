@@ -2,7 +2,7 @@
     "compilerOptions": {
         "target": "ES6",
         "lib": ["DOM", "DOM.Iterable", "ESNext", "ES6"],
-        "types": ["node", "next", "cypress", "cypress-plugin-api"],
+        "types": ["node", "next"],
         "allowJs": true,
         "skipLibCheck": true,
         "strict": true,

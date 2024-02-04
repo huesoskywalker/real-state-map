@@ -9,7 +9,8 @@ services:
             - mongo
         environment:
             - MONGODB_URI=mongodb://mongo:27017/propitalDb
-            - GOOGLE_MAPS_API_KEY="GOOGLE-API-KEY-HERE"
+        env_file:
+            - .env.local
         volumes:
             - ${PWD}:${PWD}
         restart: always
