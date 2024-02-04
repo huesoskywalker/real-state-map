@@ -1,5 +1,5 @@
 import Slider from "rc-slider"
-import React, { useEffect } from "react"
+import React, { ChangeEvent, useEffect } from "react"
 import { priceQueryParam } from "@/utils/options"
 import { usePriceFilter } from "../_hooks/usePriceFilter"
 import { useContextFilter } from "../_hooks/useContextFilter"
@@ -14,8 +14,13 @@ const PriceFilter = (): React.JSX.Element => {
     useEffect(() => {
         updatePricePosition({ selectedMinPrice, selectedMaxPrice })
     }, [selectedMinPrice, selectedMaxPrice])
+
+    const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+        if (Number(e.currentTarget.value) <= 120000) handlePriceInput(e)
+    }
+
     return (
-        <div ref={priceRange} className="w-full px-2 relative">
+        <div ref={priceRange} className="w-4/5 relative">
             <label className="text-gray-400 text-xs font-medium">Price</label>
             <Slider
                 range
@@ -44,8 +49,8 @@ const PriceFilter = (): React.JSX.Element => {
                     id="min"
                     value={selectedMinPrice === 0 ? "" : selectedMinPrice}
                     placeholder="min"
-                    onChange={handlePriceInput}
-                    className="w-[66px] h-5 p-2 text-xs bg-gray-800 text-gray-300 rounded-md"
+                    onChange={handleOnChange}
+                    className="w-[74px] h-5 p-2 text-xs bg-gray-600 text-white rounded-md"
                 />
                 <span className="text-gray-300 mx-2">-</span>
                 <input
@@ -53,8 +58,8 @@ const PriceFilter = (): React.JSX.Element => {
                     id="max"
                     value={selectedMaxPrice === 0 ? "" : selectedMaxPrice}
                     placeholder="max"
-                    onChange={handlePriceInput}
-                    className="w-[66px] h-5 p-2 text-xs bg-gray-800 text-gray-300 rounded-md"
+                    onChange={handleOnChange}
+                    className="w-[74px] h-5 p-2 text-xs bg-gray-600 text-white rounded-md"
                 />
             </div>
         </div>

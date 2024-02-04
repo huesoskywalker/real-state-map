@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { ChangeEvent, useEffect } from "react"
 import Slider from "rc-slider"
 import { surfaceAreaQueryParam } from "@/utils/options"
 import { useSurfaceAreaFilter } from "../_hooks/useSurfaceAreaFilter"
@@ -16,8 +16,15 @@ const SurfaceAreaFilter = (): React.JSX.Element => {
     useEffect(() => {
         updateSurfaceAreaPosition({ selectedMinSurfaceArea, selectedMaxSurfaceArea })
     }, [selectedMinSurfaceArea, selectedMaxSurfaceArea])
+
+    const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+        if (Number(e.target.value) <= 2500) {
+            handleSurfaceAreaInput(e)
+        }
+    }
+
     return (
-        <div ref={surfaceAreaRange} className="w-full px-2 relative">
+        <div ref={surfaceAreaRange} className="w-4/5 relative">
             <label className="text-gray-400 text-xs font-medium">Surface Area</label>
             <Slider
                 range
@@ -46,8 +53,8 @@ const SurfaceAreaFilter = (): React.JSX.Element => {
                     id="min"
                     value={selectedMinSurfaceArea === 0 ? "" : selectedMinSurfaceArea}
                     placeholder="min"
-                    onChange={handleSurfaceAreaInput}
-                    className="w-[66px] h-5 p-2 text-xs bg-gray-800 text-gray-300 rounded-md"
+                    onChange={handleOnChange}
+                    className="w-[66px] h-5 p-2 text-xs bg-gray-600 text-white rounded-md"
                 />
                 <span className="text-gray-300 mx-2">-</span>
                 <input
@@ -55,8 +62,8 @@ const SurfaceAreaFilter = (): React.JSX.Element => {
                     id="max"
                     value={selectedMaxSurfaceArea === 0 ? "" : selectedMaxSurfaceArea}
                     placeholder="max"
-                    onChange={handleSurfaceAreaInput}
-                    className="w-[66px] h-5 p-2 text-xs bg-gray-800 text-gray-300 rounded-md"
+                    onChange={handleOnChange}
+                    className="w-[66px] h-5 p-2 text-xs bg-gray-600 text-white rounded-md"
                 />
             </div>
         </div>
