@@ -22,8 +22,8 @@ export default function RootLayout({ children }: { children: ReactNode }): JSX.E
                     surfaceAreaFilterOptions={surfaceAreaFilterOptions}
                 >
                     <FilterNav />
+                    <div className="pl-60"> {children} </div>
                 </FilterContextProvider>
-                <div className="pl-60"> {children} </div>
             </body>
         </html>
     )

@@ -1,11 +1,17 @@
 import React from "react"
 import { useContextFilter } from "../_hooks/useContextFilter"
+import { useRouter } from "next/navigation"
 
 const ClearFilters = (): React.JSX.Element => {
     const { clearFilters } = useContextFilter()
+
+    const router = useRouter()
+
     return (
         <button
-            onClick={clearFilters}
+            onClick={() => {
+                clearFilters(), router.push("/")
+            }}
             className={
                 "rounded-md px-3 py-2 text-xs font-medium text-gray-300 hover:text-white hover:bg-gray-500 border border-gray-500"
             }

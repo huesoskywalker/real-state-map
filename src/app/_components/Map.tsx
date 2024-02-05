@@ -4,7 +4,7 @@ import { GoogleMap, MarkerF, MarkerClustererF, useJsApiLoader } from "@react-goo
 import { Property } from "@/types/property"
 import { officeMarker } from "../../../public/markers/officeMarker"
 
-import { getMarker } from "../_hooks/getMarker"
+import { getMarker } from "../_utils/getMarker"
 import OfficeInfoWindow from "./OfficeInfoWindow"
 import PropertyInfoWindow from "./PropertyInfoWindow"
 import { useMapLoader } from "../_hooks/useMapLoader"
@@ -54,7 +54,7 @@ function Map({ properties }: { properties: Property[] }): React.JSX.Element {
             <MarkerClustererF>
                 {(clusterer) => (
                     <>
-                        {properties?.map((property: Property) => {
+                        {properties.map((property: Property) => {
                             const iconUrl: string | undefined = getMarker(property.category)
                             const icon: { url: string } | undefined = iconUrl
                                 ? { url: iconUrl }
@@ -84,4 +84,4 @@ function Map({ properties }: { properties: Property[] }): React.JSX.Element {
     )
 }
 
-export default React.memo(Map)
+export default Map

@@ -11,17 +11,22 @@
         "populate-db": "yarn ts-node ./src/lib/populate-db.ts"
     },
     "dependencies": {
+        "@radix-ui/react-dialog": "^1.0.5",
+        "@radix-ui/react-slot": "^1.0.2",
         "@react-google-maps/api": "^2.19.0",
-        "axios": "^1.4.0",
-        "clsx": "^2.0.0",
+        "class-variance-authority": "^0.7.0",
+        "clsx": "^2.1.0",
         "eslint": "8.45.0",
         "eslint-config-next": "13.4.10",
         "lodash": "^4.17.21",
+        "lucide-react": "^0.323.0",
         "mongodb": "^5.7.0",
-        "next": "13.4.10",
+        "next": "14.0.1",
         "rc-slider": "^10.2.1",
         "react": "18.2.0",
-        "react-dom": "18.2.0"
+        "react-dom": "18.2.0",
+        "tailwind-merge": "^2.2.1",
+        "tailwindcss-animate": "^1.0.7"
     },
     "devDependencies": {
         "@types/lodash": "^4.14.199",

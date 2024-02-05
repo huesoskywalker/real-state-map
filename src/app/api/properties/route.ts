@@ -49,10 +49,9 @@ export async function GET(request: Request) {
         const collection: Collection<Property> = client
             .db("propitalDb")
             .collection<Property>("properties")
+
         const properties: Property[] = await collection.find<Property>(filter).toArray()
-        if (properties.length === 0) {
-            return NextResponse.json("No properties were found matching criteria", { status: 404 })
-        }
+
         return NextResponse.json(properties)
     } catch (error) {
         return NextResponse.json("Internal Server Error", { status: 500 })
