@@ -25,8 +25,8 @@ export function usePriceFilter({ query_id }: IQueryParam): {
     const handlePriceInput = (event: ChangeEvent<HTMLInputElement>): void => {
         const { value, id } = event.target
 
-        const updatedMinPriceValue: number = id === "min" ? parseInt(value) : selectedMinPrice
-        const updatedMaxPriceValue: number = id === "max" ? parseInt(value) : selectedMaxPrice
+        const updatedMinPriceValue: number = id === "minPrice" ? parseInt(value) : selectedMinPrice
+        const updatedMaxPriceValue: number = id === "maxPrice" ? parseInt(value) : selectedMaxPrice
 
         updateMinPrice(updatedMinPriceValue)
         updateMaxPrice(updatedMaxPriceValue)

@@ -12,7 +12,7 @@ const FilterNav = (): React.JSX.Element => {
             <div className="group h-auto flex items-center py-4 px-4">
                 <nav className="space-y-3 px-1 flex flex-col items-center justify-center">
                     <ClearFilters />
-                    <label className="text-gray-200 text-xs">Category</label>
+                    <span className="text-gray-200 text-xs">Category</span>
                     <CategoryFilter />
                     <PriceFilter />
                     <SurfaceAreaFilter />

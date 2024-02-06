@@ -25,7 +25,7 @@ const SurfaceAreaFilter = (): React.JSX.Element => {
 
     return (
         <div ref={surfaceAreaRange} className="w-4/5 relative">
-            <label className="text-gray-400 text-xs font-medium">Surface Area</label>
+            <span className="text-gray-400 text-xs font-medium">Surface Area</span>
             <Slider
                 range
                 min={0}

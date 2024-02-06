@@ -21,7 +21,7 @@ const PriceFilter = (): React.JSX.Element => {
 
     return (
         <div ref={priceRange} className="w-4/5 relative">
-            <label className="text-gray-400 text-xs font-medium">Price</label>
+            <span className="text-gray-400 text-xs font-medium">Price</span>
             <Slider
                 range
                 min={0}
@@ -46,7 +46,7 @@ const PriceFilter = (): React.JSX.Element => {
             <div className="flex justify-center mt-7">
                 <input
                     type="number"
-                    id="min"
+                    id="minPrice"
                     value={selectedMinPrice === 0 ? "" : selectedMinPrice}
                     placeholder="min"
                     onChange={handleOnChange}
@@ -55,7 +55,7 @@ const PriceFilter = (): React.JSX.Element => {
                 <span className="text-gray-300 mx-2">-</span>
                 <input
                     type="number"
-                    id="max"
+                    id="maxPrice"
                     value={selectedMaxPrice === 0 ? "" : selectedMaxPrice}
                     placeholder="max"
                     onChange={handleOnChange}
